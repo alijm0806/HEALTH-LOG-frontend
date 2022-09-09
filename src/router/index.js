@@ -4,6 +4,7 @@ import SignupView from "../views/SignupView.vue";
 import LoginView from "../views/LoginView.vue";
 import LogoutView from "../views/LogoutView.vue";
 import VitaminsIndexView from "../views/VitaminsIndexView.vue";
+import ListIndexView from "../views/ListIndexView.vue"
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/vitamins",
     name: "vitamins-index",
     component: VitaminsIndexView
+  },
+  {
+    path: "/vitamins/mylist",
+    name: "list-index",
+    component: ListIndexView
   },
   {
     path: '/about',

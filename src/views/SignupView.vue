@@ -49,7 +49,8 @@ export default {
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" maxlength="10"
           v-model="newUserParams.password" />
       </div>
-      <small class="text-success"> Password characters no more than 10</small>
+
+      <p><small class="text-success"> Password characters no more than 10</small></p>
       <br>
       <div>
 

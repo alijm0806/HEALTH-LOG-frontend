@@ -7,6 +7,7 @@ export default {
     return {
       newSessionParams: {},
       errors: [],
+      fieldType: "password"
     };
   },
   methods: {
@@ -25,6 +26,9 @@ export default {
           this.password = "";
         });
     },
+    switchField() {
+      this.fieldType === "password" ? "text" : "password";
+    }
   },
 };
 </script>
@@ -50,13 +54,19 @@ export default {
 
       </div>
       <br>
-      <p><label for="floatingPassword">Password: </label></p>
-      <div class="Inputs">
-        <input type="password" id="floatingPassword" placeholder="Password" maxlength="10"
+      <p><label>Password: </label></p>
+      <form action="" class="Inputs">
+        <input type="password" v-bind:type="fieldType" placeholder="Password" maxlength="10"
           v-model="newSessionParams.password">
-        <small class="text-success"> Password characters no more than 10</small>
+        <br>
+        <!-- <button @:click="switchField()"> -->
+        <!-- Hide/Show Password -->
+        <!-- </button> -->
+        <br>
+      </form>
+      <br>
+      <small class="text-success"> Password characters no more than 10</small>
 
-      </div>
       <br>
       <br>
       <p><button class="btn btn-success" type="submit" value="Submit">Submit</button></p>
@@ -68,6 +78,8 @@ export default {
   
   <style >
   .Inputs {
+  
+  
     position: start;
     display: flex;
     justify-content: start;
