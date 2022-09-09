@@ -17,7 +17,7 @@ export default {
         .then((response) => {
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          this.$router.push("/Vitamins");
+          this.$router.push("/vitamins/mylist");
         })
         .catch((error) => {
           console.log(error.response);
@@ -33,7 +33,7 @@ export default {
 };
 </script>
   
-  <template>
+<template>
   <h1>Login</h1>
   <br>
   <div class="login">
@@ -76,21 +76,21 @@ export default {
 
 </template>
   
-  <style >
-  .Inputs {
-  
-  
-    position: start;
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    font-size: larger;
-  
-    margin-bottom: 8px;
-    ;
-    border: none;
-  
-    padding: 2px 2px 2px 2px;
-    height: 20px;
-  }
-  </style>
+<style >
+.Inputs {
+
+
+  position: start;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  font-size: larger;
+
+  margin-bottom: 8px;
+  ;
+  border: none;
+
+  padding: 2px 2px 2px 2px;
+  height: 20px;
+}
+</style>

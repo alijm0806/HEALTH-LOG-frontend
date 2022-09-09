@@ -2,19 +2,34 @@
 <script setup>
 
 import { ref } from 'vue';
-
-
 const is_expanded = ref(localStorage.getItem("is_expanded") === "true");
 const ToggleMenu = () => {
   is_expanded.value = !is_expanded.value
   localStorage.setItem("is_expanded", is_expanded.value)
 }
+</script >
 
+<script>
+export default {
+
+  data: function () {
+    return {
+      isLoggedIn: !!localStorage.jwt
+    }
+  },
+  watch: {
+    $route: function () {
+      this.isLoggedIn = !!localStorage.jwt
+    }
+  }
+}
 </script>
 
 <template>
-  <!-- Am I logged in? {{ isLoggedIn }} -->
+  Am I logged in? {{ isLoggedIn }}
+
   <div class="app">
+
     <aside :class="`${is_expanded ? 'is_expanded' : ''}`">
 
       <div class="logo">
@@ -33,6 +48,7 @@ const ToggleMenu = () => {
         <router-link to="/vitamins" class="button">
           <span class="material-icons">home</span>
           <span class="text">Home</span>
+
         </router-link>
         <router-link to="/vitamins/mylist" class="button">
           <span class="material-icons">favorite</span>
@@ -50,6 +66,21 @@ const ToggleMenu = () => {
           <span class="material-icons">email</span>
           <span class="text">Contact</span>
         </router-link>
+
+
+        <li class="material-icons">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Authentication
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a v-if="!isLoggedIn" class="dropdown-item" href="/Signup">Signup</a></li>
+            <li><a v-if="!isLoggedIn" class="dropdown-item" href="/">Login</a></li>
+            <li><a v-if="isLoggedIn" class="dropdown-item" href="/Logout">Logout</a></li>
+          </ul>
+        </li>
+
+
       </div>
 
       <div class="flex"></div>
@@ -65,7 +96,7 @@ const ToggleMenu = () => {
       <router-view />
     </div>
   </div>
-</template>
+</template >
 
 
 <style>

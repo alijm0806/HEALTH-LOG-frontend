@@ -7,18 +7,14 @@ import VitaminsIndexView from "../views/VitaminsIndexView.vue";
 import ListIndexView from "../views/ListIndexView.vue"
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
+
   {
     path: "/signup",
     name: "signup",
     component: SignupView
   },
   {
-    path: "/login",
+    path: "/",
     name: "login",
     component: LoginView
   },
