@@ -17,7 +17,8 @@ export default {
       isHidden: false,
       AddToList: "Add to List",
       vitamin_ids: [],
-      list_of_vitamin: []
+      list_of_vitamin: [],
+      errors: [],
     };
 
   },
@@ -61,7 +62,6 @@ export default {
     },
     addVitamins: function (vitamin) {
       this.newList.vitamin_id = vitamin.id
-      this.newList.quantity = 2
       console.log(this.newList)
 
       axios.post("/lists_of_vitamins.json", this.newList).then((response) => {
@@ -77,38 +77,64 @@ export default {
 
 </script> 
 <template>
+  <!-- Strat Landing -->
+  <!-- <div class="landing">
+    <div class="container">
+      <div class="text">
+        <h1></h1>
+        <p></p>
+      </div>
+    </div>
+  </div>
+  <a href="#vitamins-index" class="go-down">
+    <i class="fas fa-angle-double-down fa-2x"></i>
+  </a> -->
+
+  <!-- End Landing -->
+
+
   <div class="vitamins-index">
 
     <h1 class="main-title">All Vitamins</h1>
     <div class="vitamins-index">
       <form @submit.prevent="searchVitamin">
         <input type="text" v-model="searchTerm" placeholder="Search for a Vitamin..." />
-        <!-- <button type="submit" class="button-vitamins">Search</button> -->
+        <!-- <button type="submit" >Search</button> -->
       </form>
     </div>
     <div>
 
 
       <div class="card mb-3" v-for="vitamin in filterVitamins()">
-        <div class="row g-0">
+        <ul>
+          <li v-for="error in errors" v-bind:key="error" id="errors">{{ error }}</li>
+        </ul>
+        <div class="row ">
+          <div class=" col-sm-3">
+            <img v-bind:src="vitamin.description" class="img-fluid rounded-start" />
+          </div>
 
-          <img v-bind:src="vitamin.description" class="img-fluid rounded-start" />
+          <div class=" col-sm-9">
 
-
-          <div class=" col-md-8">
-            <div class="card-body-vitamins">
-              <h2 class="card-title">{{ vitamin.name }}</h2>
-              <p class="card-text">
-              <h4>Used_for: {{ vitamin.used_for }}</h4>
-              <h4>Sources: {{ vitamin.sources }}</h4>
-              <h4>Stats: {{ (vitamin.users).length }}</h4>
-              </p>
-              <button v-if="!vitamin_ids.includes(vitamin.id)" :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
-                v-on:click=" addVitamins(vitamin); reloadPage()">Add To List</button>
+            <h2 class="card-title">{{ vitamin.name }}</h2>
+            <p class="card-text">
+            <h4>Used_for: {{ vitamin.used_for }}</h4>
+            <h4>Sources: {{ vitamin.sources }}</h4>
+            </p>
+            <div class="row ">
+              <div class=" col-sm-6">
+                <h4>Stats: {{ (vitamin.users).length }}</h4>
+              </div>
+              <div class=" col-sm-6">
+                <div class="quantity-input">
+                  Quantity: <input v-model="newList.quantity">
+                </div>
+                <button v-if="!vitamin_ids.includes(vitamin.id)" :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
+                  v-on:click=" addVitamins(vitamin); reloadPage()">Add To List</button>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
@@ -243,6 +269,20 @@ form input {
   width: 100%;
 }
 
+.input {
+  display: block;
+  padding: 0.5rem 1rem;
+  background-image: linear-gradient(to right, #19b251 50%, #ff4583e7 50%);
+  background-size: 200%;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: bold;
+  transition: 0.4s;
+  margin-left: auto;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+
+}
 
 .button-vitamins {
   appearance: none;
@@ -270,32 +310,34 @@ form input {
   background-position: right;
 }
 
-.result {
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 1rem;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 15%;
+.quantity-input {
+  position: relative;
+  display: inline-block;
+  appearance: none;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: block;
+  padding: 0.5rem 1rem;
+  background-image: linear-gradient(to right, #19b251 50%, #ff4583e7 50%);
+  background-size: 200%;
+  color: rgb(5, 5, 5);
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-transform: uppercase;
   transition: 0.4s;
-
+  margin-left: 40%;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .card-body-vitamins {
   margin-left: 0.5rem
 }
 
-.row-g-0 {
-  margin: auto;
-  width: fit-content;
-  height: fit-content;
-  background-color: aqua;
-
-
-}
-
 .img-fluid {
-  display: grid;
+  display: flex;
   align-items: center;
   width: 410px;
   height: 410px;

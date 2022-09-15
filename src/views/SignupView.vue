@@ -78,13 +78,6 @@ export default {
   <div class="background"></div>
 </template>
 <style>
-.app {
-  background-image: URL("../assets/pexels-photo-3683074.png");
-  background-position: -55%;
-  width: 100%;
-  height: 100%;
-}
-
 .login-signup {
   position: relative;
   width: 90%;

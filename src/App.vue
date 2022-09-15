@@ -118,7 +118,11 @@ export default {
   display: flex;
   flex: 1 1 0;
   max-width: 120%;
-
+  background-image: URL("./assets/pexels-photo-3683074.png");
+  background-position: -55%;
+  width: 100%;
+  height: 100%;
+  z-index: -1
 }
 
 
