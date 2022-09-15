@@ -15,7 +15,7 @@ export default {
       axios.get("/lists_of_vitamins.json").then((response) => {
         console.log("list index", response);
         this.lists_of_vitamins = response.data;
-
+        console.log(this.lists_of_vitamins);
 
       });
     },
@@ -31,7 +31,7 @@ export default {
     <br>
     <div v-for="list_of_vitamin in lists_of_vitamins" v-bind:key="list_of_vitamin.id">
       <h2>{{ list_of_vitamin }}</h2>
-
+      <hr>
       <hr>
     </div>
   </div>

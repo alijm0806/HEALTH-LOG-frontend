@@ -34,63 +34,106 @@ export default {
 </script>
   
 <template>
-  <h1>Login</h1>
-  <br>
-  <div class="login">
-    <p>
-      Don't have an account?
-      <a v-bind:href="'/Signup'">Register</a>
-    </p>
-    <form v-on:submit.prevent="submit()">
-      <ul>
-        <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
-      </ul>
-      <p>
-        <label for="floatingInput">Email: </label>
-      </p>
-      <div class="Inputs">
-        <input type="email" id="floatingInput" placeholder="name@example.com" v-model="newSessionParams.email">
-        <email class="icon" />
 
+
+  <div class="login-signup">
+
+    <div class="card border-info mb-3">
+      <div class="form-Bx">Login</div>
+      <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">
+        <form v-on:submit.prevent="submit()">
+          <ul>
+            <li v-for="error in errors" v-bind:key="error" id="errors">{{ error }}</li>
+          </ul>
+          <p>
+            <label for="floatingInput">Email: </label>
+          </p>
+
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+            v-model="newSessionParams.email">
+          <email class="icon" />
+
+          <br>
+          <p><label>Password: </label></p>
+
+          <input type="password" class="form-control" id="floatingInput" v-bind:type="fieldType" placeholder="Password"
+            minlength="6" v-model="newSessionParams.password">
+
+          <small class="text-success"> Password must be at least 6 characters long</small>
+
+          <br>
+          <br>
+          <p><button class="btn btn-success" type="submit" value="Submit">Submit</button></p>
+          <p>
+            <br>
+            <br>
+            Don't have an account?
+            <a v-bind:href="'/Signup'">Register</a>
+          </p>
+        </form>
+
+        </p>
       </div>
-      <br>
-      <p><label>Password: </label></p>
-      <form action="" class="Inputs">
-        <input type="password" v-bind:type="fieldType" placeholder="Password" maxlength="10"
-          v-model="newSessionParams.password">
-        <br>
-        <!-- <button @:click="switchField()"> -->
-        <!-- Hide/Show Password -->
-        <!-- </button> -->
-        <br>
-      </form>
-      <br>
-      <small class="text-success"> Password characters no more than 10</small>
 
-      <br>
-      <br>
-      <p><button class="btn btn-success" type="submit" value="Submit">Submit</button></p>
+    </div>
 
-    </form>
+
   </div>
+
+
 
 </template>
   
 <style >
-.Inputs {
+.login-signup {
 
-
-  position: start;
   display: flex;
-  justify-content: start;
-  align-items: start;
-  font-size: larger;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
 
-  margin-bottom: 8px;
-  ;
+
+}
+
+
+.login-signup.input {
+  border: solid
+}
+
+.card.border-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
+  width: 70%;
+  height: 100%;
+  border-radius: 40px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
 
-  padding: 2px 2px 2px 2px;
-  height: 20px;
+.card-body {
+  width: 25rem;
+
+  font-size: max-content
+}
+
+#floatingInput {
+  border-radius: 25px;
+  border-color: #607d8b;
+}
+
+.form-Bx {
+  font-size: xx-large;
+  align-items: flex-start;
+  color: #607d8b;
+  border-bottom: 4px solid #ff4584;
+  letter-spacing: 0.5rem;
+
+}
+
+#errors {
+  color: red
 }
 </style>

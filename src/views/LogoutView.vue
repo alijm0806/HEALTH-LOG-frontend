@@ -5,11 +5,11 @@ export default {
   created: function () {
     delete axios.defaults.headers.common["Authorization"];
     localStorage.removeItem("jwt");
-    this.$router.push("/Login");
+    this.$router.push("/");
   },
 };
 </script>
   
-  <template>
+<template>
   <div class="logout"></div>
 </template>

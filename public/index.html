@@ -18,17 +18,5 @@
   </body>
 </html>
 <script>
-export default {
 
-  data: function () {
-    return {
-      isLoggedIn: !!localStorage.jwt
-    }
-  },
-  watch: {
-    $route: function () {
-      this.isLoggedIn = !!localStorage.jwt
-    }
-  }
-}
 </script>

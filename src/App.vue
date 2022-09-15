@@ -7,6 +7,9 @@ const ToggleMenu = () => {
   is_expanded.value = !is_expanded.value
   localStorage.setItem("is_expanded", is_expanded.value)
 }
+localStorage.setItem("is_expanded", is_expanded.value)
+
+
 </script >
 
 <script>
@@ -21,21 +24,19 @@ export default {
     $route: function () {
       this.isLoggedIn = !!localStorage.jwt
     }
-  }
+  },
+
 }
 </script>
 
 <template>
-  Am I logged in? {{ isLoggedIn }}
-
+  <!-- Am I logged in? {{ isLoggedIn }} -->
   <div class="app">
 
     <aside :class="`${is_expanded ? 'is_expanded' : ''}`">
-
       <div class="logo">
         <img src="./assets/logo.png" alt="Vue" />
       </div>
-
       <div class="menu-toggle-wrap">
         <button class="menu-toggle" v-on:click="ToggleMenu">
           <span class="material-icons"> keyboard_double_arrow_right</span>
@@ -45,47 +46,44 @@ export default {
 
       <h3></h3>
       <div class="menu">
+        <router-link to="/" class="button">
+          <span v-if="!isLoggedIn" class="material-icons">
+            login
+          </span>
+          <span v-if="!isLoggedIn" class="text">Login</span>
+        </router-link>
         <router-link to="/vitamins" class="button">
-          <span class="material-icons">home</span>
-          <span class="text">Home</span>
+          <span v-if="isLoggedIn" class="material-icons">home</span>
+          <span v-if="isLoggedIn" class="text">Home</span>
 
         </router-link>
         <router-link to="/vitamins/mylist" class="button">
-          <span class="material-icons">favorite</span>
-          <span class="text">My List</span>
+          <span v-if="isLoggedIn" class="material-icons">favorite</span>
+          <span v-if="isLoggedIn" class="text">My List</span>
         </router-link>
         <router-link to="/about" class="button">
-          <span class="material-icons">description</span>
-          <span class="text">About</span>
+          <span v-if="isLoggedIn" class="material-icons">description</span>
+          <span v-if="isLoggedIn" class="text">About</span>
         </router-link>
         <router-link to="/team" class="button">
-          <span class="material-icons">group</span>
-          <span class="text">Team</span>
+          <span v-if="isLoggedIn" class="material-icons">group</span>
+          <span v-if="isLoggedIn" class="text">Team</span>
         </router-link>
         <router-link to="/contact" class="button">
-          <span class="material-icons">email</span>
-          <span class="text">Contact</span>
+          <span v-if="isLoggedIn" class="material-icons">email</span>
+          <span v-if="isLoggedIn" class="text">Contact</span>
         </router-link>
 
-
-        <li class="material-icons">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Authentication
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a v-if="!isLoggedIn" class="dropdown-item" href="/Signup">Signup</a></li>
-            <li><a v-if="!isLoggedIn" class="dropdown-item" href="/">Login</a></li>
-            <li><a v-if="isLoggedIn" class="dropdown-item" href="/Logout">Logout</a></li>
-          </ul>
-        </li>
-
-
       </div>
-
       <div class="flex"></div>
-
       <div class="menu">
+        <router-link to="/Logout" class="button">
+          <span v-if="isLoggedIn" class="material-icons">
+            logout
+          </span>
+          <span v-if="isLoggedIn" class="text">Logout</span>
+        </router-link>
+
         <router-link to="/settings" class="button">
           <span class="material-icons">settings</span>
           <span class="text">Settings</span>
@@ -119,11 +117,10 @@ export default {
 .app {
   display: flex;
   flex: 1 1 0;
-  padding: 2rem;
-  max-width: 2500px;
-  padding-left: 6rem;
+  max-width: 120%;
 
 }
+
 
 aside {
   display: flex;
@@ -133,7 +130,7 @@ aside {
   width: calc(2rem + 30px);
   min-width: calc(2rem + 30px);
   overflow: hidden;
-  min-height: 100vh;
+  height: 100vh;
   padding: 1rem;
   transition: 0.2s ease-in-out;
   z-index: 99;
@@ -144,6 +141,7 @@ aside {
 .menu-toggle {
   transition: 0.2s ease-in-out;
   margin: 0px -20px 0px 0px;
+
 }
 
 
@@ -210,7 +208,6 @@ button {
   display: flex;
   align-items: center;
   text-decoration: none;
-
   transition: 0.2s ease-in-out;
   padding: 0.5rem 1rem;
 }
@@ -292,8 +289,30 @@ h3,
   transition: opacity 0.3s ease-in-out;
 }
 
-media {
-  position: absolute;
-  z-index: 99;
+.container {
+  position: sticky;
+  overflow: scroll;
+  height: 100vh;
+  scroll-behavior: smooth;
+  margin-top: 50px
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+  /* make scrollbar transparent */
+}
+
+
+@media screen {
+
+  .container (min-width: 768px) {
+    position: absolute;
+    z-index: 99;
+  }
+}
+
+#errors {
+  color: red
 }
 </style>
