@@ -2,6 +2,8 @@
 import { ref } from 'vue';
 const isHidden = ref(localStorage.getItem("isHidden") === "true");
 localStorage.setItem("isHidden", isHidden.value)
+
+
 </script >
 
 <script>
@@ -118,15 +120,20 @@ export default {
 
             <h2 class="card-title">{{ vitamin.name }}</h2>
             <p class="card-text">
-            <h4>Used_for: {{ vitamin.used_for }}</h4>
-            <h4>Sources: {{ vitamin.sources }}</h4>
+            <h5>Used_for: {{ vitamin.used_for }}</h5>
+            <h5>Sources: {{ vitamin.sources }}</h5>
             </p>
             <div class="row ">
               <div class=" col-sm-6">
-                <h4>Stats: {{ (vitamin.users).length }}</h4>
+                <div class="stats">
+                  <h4>Stats: <span>{{ (vitamin.users).length / vitamin.stats * 100}} %</span></h4>
+                  <div class="the-progress">
+                    <span :style="{'width':`${parseInt((vitamin.users).length / vitamin.stats * 100)}%`}"></span>
+                  </div>
+                </div>
               </div>
               <div class=" col-sm-6">
-                <div class="quantity-input">
+                <div v-if="!vitamin_ids.includes(vitamin.id)" class="quantity-input">
                   Quantity: <input v-model="newList.quantity">
                 </div>
                 <button v-if="!vitamin_ids.includes(vitamin.id)" :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
@@ -269,21 +276,6 @@ form input {
   width: 100%;
 }
 
-.input {
-  display: block;
-  padding: 0.5rem 1rem;
-  background-image: linear-gradient(to right, #19b251 50%, #ff4583e7 50%);
-  background-size: 200%;
-  color: white;
-  font-size: 1.125rem;
-  font-weight: bold;
-  transition: 0.4s;
-  margin-left: auto;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-
-}
-
 .button-vitamins {
   appearance: none;
   outline: none;
@@ -310,6 +302,11 @@ form input {
   background-position: right;
 }
 
+input {
+  text-align: center;
+  width: 75px;
+}
+
 .quantity-input {
   position: relative;
   display: inline-block;
@@ -317,14 +314,14 @@ form input {
   outline: none;
   border: none;
   background: none;
-  cursor: pointer;
   display: block;
   padding: 0.5rem 1rem;
-  background-image: linear-gradient(to right, #19b251 50%, #ff4583e7 50%);
+  /* background-image: linear-gradient(to right, #19b251 50%, #ff4583e7 50%); */
   background-size: 200%;
   color: rgb(5, 5, 5);
   font-size: 1.125rem;
   font-weight: bold;
+  text-align: end;
   text-transform: uppercase;
   transition: 0.4s;
   margin-left: 40%;
@@ -337,6 +334,7 @@ form input {
 }
 
 .img-fluid {
+  flex: 1;
   display: flex;
   align-items: center;
   width: 410px;
@@ -345,5 +343,34 @@ form input {
   border-radius: 1rem;
 
   margin: 50px 50px 0px 0px;
+}
+
+h4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats span {
+  font-size: 25px;
+  border: 1px solid #ccc;
+  padding: 3px 5px;
+  border-radius: 4px;
+  color: rgb(0, 115, 255);
+}
+
+.the-progress {
+  height: 30px;
+  background-color: #eee;
+  position: relative;
+  min-width: 75%
+}
+
+.the-progress span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background-color: #19b251;
 }
 </style>
