@@ -52,19 +52,23 @@ export default {
           </span>
           <span v-if="!isLoggedIn" class="text">Login</span>
         </router-link>
-        <router-link to="/vitamins" class="button">
+
+        <router-link to="/home" class="button">
           <span v-if="isLoggedIn" class="material-icons">home</span>
           <span v-if="isLoggedIn" class="text">Home</span>
 
         </router-link>
+
+        <router-link to="/vitamins" class="button">
+          <span v-if="isLoggedIn" class="material-icons">description</span>
+          <span v-if="isLoggedIn" class="text">Vitamins</span>
+        </router-link>
+
         <router-link to="/vitamins/mylist" class="button">
           <span v-if="isLoggedIn" class="material-icons">favorite</span>
           <span v-if="isLoggedIn" class="text">My List</span>
         </router-link>
-        <router-link to="/about" class="button">
-          <span v-if="isLoggedIn" class="material-icons">description</span>
-          <span v-if="isLoggedIn" class="text">About</span>
-        </router-link>
+
         <router-link to="/team" class="button">
           <span v-if="isLoggedIn" class="material-icons">group</span>
           <span v-if="isLoggedIn" class="text">Team</span>
@@ -117,14 +121,12 @@ export default {
 .app {
   display: flex;
   flex: 1 1 0;
-  max-width: 120%;
+  max-width: 100%;
   background-image: URL("./assets/pexels-photo-3683074.png");
-  background-size: 100%;
+  background-size: 100vh;
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
-  height: 100%;
-  z-index: -1
 }
 
 

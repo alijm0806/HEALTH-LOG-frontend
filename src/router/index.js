@@ -24,6 +24,11 @@ const routes = [
     component: LogoutView
   },
   {
+    path: "/home",
+    name: "home",
+    component: HomeView
+  },
+  {
     path: "/vitamins",
     name: "vitamins-index",
     component: VitaminsIndexView

@@ -17,7 +17,7 @@ export default {
         .then((response) => {
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          this.$router.push("/vitamins/mylist");
+          this.$router.push("/home");
         })
         .catch((error) => {
           console.log(error.response);
@@ -88,12 +88,13 @@ export default {
   
 <style >
 .login-signup {
-
+  max-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 10rem;
-
+  overflow: hidden;
+  scroll-behavior: unset;
 
 }
 
@@ -107,8 +108,8 @@ export default {
   justify-content: center;
   align-items: center;
   border: none;
-  width: 70%;
-  height: 100%;
+  width: fit-content;
+  height: 90%;
   border-radius: 40px;
   background-color: rgba(255, 255, 255, 0.7);
 }
@@ -130,6 +131,7 @@ export default {
   color: #607d8b;
   border-bottom: 4px solid #ff4584;
   letter-spacing: 0.5rem;
+  padding-top: 20px;
 
 }
 

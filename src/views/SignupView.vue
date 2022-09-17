@@ -39,36 +39,26 @@ export default {
           <ul>
             <li v-for="error in errors" v-bind:key="error" id="errors">{{ error }}</li>
           </ul>
-
-
-          <div>
-            <p>Name: <input class="form-control" id="floatingInput" placeholder="name" type="text"
-                v-model="newUserParams.name" /></p>
-          </div>
-          <br>
-          <div>
-
-            <p>Email: <input class="form-control" id="floatingInput" placeholder="name@example.com" type="email"
-                v-model="newUserParams.email" />
-            </p>
-          </div>
-          <br>
-
-
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" minlength="6"
-            v-model="newUserParams.password" />
-
+          <p>Name: <input class="form-control" id="floatingInput" placeholder="name" type="text"
+              v-model="newUserParams.name" /></p>
+          <p>Email: <input class="form-control" id="floatingInput" placeholder="name@example.com" type="email"
+              v-model="newUserParams.email" />
+          </p>
+          <p>Password: <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+              minlength="6" v-model="newUserParams.password" />
+          </p>
 
           <p><small class="text-success"> Password must be at least 6 characters long</small></p>
-          <br>
-          <div>
 
+          <p>Password Confirmation:
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password confirmation"
               minlength="6" v-model="newUserParams.password_confirmation" />
-          </div>
+          </p>
           <small class="text-success"> Password must be at least 6 characters long</small>
           <br>
-          <input class="btn btn-success" type="submit" value="Submit" />
+          <button class="btn btn-success" type="submit" value="Submit">Submit
+          </button>
+
         </form>
         </p>
       </div>
@@ -121,5 +111,9 @@ export default {
 
 #errors {
   color: red
+}
+
+.btn-btn-succes {
+  position: center;
 }
 </style>

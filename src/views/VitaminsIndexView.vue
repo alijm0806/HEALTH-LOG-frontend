@@ -79,20 +79,7 @@ export default {
 
 </script> 
 <template>
-  <!-- Strat Landing -->
-  <!-- <div class="landing">
-    <div class="container">
-      <div class="text">
-        <h1></h1>
-        <p></p>
-      </div>
-    </div>
-  </div>
-  <a href="#vitamins-index" class="go-down">
-    <i class="fas fa-angle-double-down fa-2x"></i>
-  </a> -->
 
-  <!-- End Landing -->
 
 
   <div class="vitamins-index">
@@ -106,38 +93,40 @@ export default {
     </div>
     <div>
 
+      <div>
+        <div class="card-mb-3" v-for="vitamin in filterVitamins()">
+          <ul>
+            <li v-for="error in errors" v-bind:key="error" id="errors">{{ error }}</li>
+          </ul>
+          <div class="row ">
+            <div class=" col-sm-4">
+              <img v-bind:src="vitamin.description" class="img-responsive" alt="" />
+            </div>
 
-      <div class="card mb-3" v-for="vitamin in filterVitamins()">
-        <ul>
-          <li v-for="error in errors" v-bind:key="error" id="errors">{{ error }}</li>
-        </ul>
-        <div class="row ">
-          <div class=" col-sm-3">
-            <img v-bind:src="vitamin.description" class="img-fluid rounded-start" />
-          </div>
+            <div class=" col-sm-8">
 
-          <div class=" col-sm-9">
-
-            <h2 class="card-title">{{ vitamin.name }}</h2>
-            <p class="card-text">
-            <h5>Used_for: {{ vitamin.used_for }}</h5>
-            <h5>Sources: {{ vitamin.sources }}</h5>
-            </p>
-            <div class="row ">
-              <div class=" col-sm-6">
-                <div class="stats">
-                  <h4>Stats: <span>{{ (vitamin.users).length / vitamin.stats * 100}} %</span></h4>
-                  <div class="the-progress">
-                    <span :style="{'width':`${parseInt((vitamin.users).length / vitamin.stats * 100)}%`}"></span>
+              <h2 class="card-title">{{ vitamin.name }}</h2>
+              <p class="card-text">
+              <h5>Used_for: {{ vitamin.used_for }}</h5>
+              <h5>Sources: {{ vitamin.sources }}</h5>
+              </p>
+              <div class="row ">
+                <div class=" col-sm-6">
+                  <div class="stats">
+                    <h4>Stats: <span>{{ (vitamin.users).length / vitamin.stats * 100}} %</span></h4>
+                    <div class="the-progress">
+                      <span :style="{'width':`${parseInt((vitamin.users).length / vitamin.stats * 100)}%`}"></span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class=" col-sm-6">
-                <div v-if="!vitamin_ids.includes(vitamin.id)" class="quantity-input">
-                  Quantity: <input v-model="newList.quantity">
+                <div class=" col-sm-6">
+                  <div v-if="!vitamin_ids.includes(vitamin.id)" class="quantity-input">
+                    Quantity: <input type="text" v-model="newList.quantity" v-bind="vitamin.id">
+                  </div>
+                  <button v-if="!vitamin_ids.includes(vitamin.id)"
+                    :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
+                    v-on:click=" addVitamins(vitamin); reloadPage()">Add To List</button>
                 </div>
-                <button v-if="!vitamin_ids.includes(vitamin.id)" :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
-                  v-on:click=" addVitamins(vitamin); reloadPage()">Add To List</button>
               </div>
             </div>
           </div>
@@ -148,10 +137,6 @@ export default {
 
 </template>
 <style>
-.app {
-  background-color: #EEE;
-}
-
 h1 {
   text-align: center;
   margin-top: 5rem;
@@ -329,20 +314,19 @@ input {
   margin-bottom: 0.5rem;
 }
 
-.card-body-vitamins {
-  margin-left: 0.5rem
+.card-mb-3 {
+  margin-left: 0.5rem;
+  background-color: rgb(204, 204, 204, 0.65);
 }
 
-.img-fluid {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  width: 410px;
-  height: 410px;
-  object-fit: cover;
-  border-radius: 1rem;
 
-  margin: 50px 50px 0px 0px;
+.img-responsive {
+  display: grid;
+  width: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  height: 100%;
+  max-height: 100%;
 }
 
 h4 {
@@ -350,6 +334,14 @@ h4 {
   justify-content: space-between;
   align-items: center;
 }
+
+.stats {
+  border-left: solid 5px #ff4583ad;
+  border-right: solid 2px rgb(184, 181, 181);
+  border-top: solid 2px rgb(184, 181, 181);
+  border-bottom: solid 2px rgb(184, 181, 181);
+}
+
 
 .stats span {
   font-size: 25px;
