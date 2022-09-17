@@ -1,13 +1,28 @@
 <script>
 import axios from "axios";
+import flatPickr from 'vue-flatpickr-component';
+import 'flatpickr/dist/flatpickr.css';
+import 'flatpickr/dist/themes/material_blue.css';
+
 export default {
   data: function () {
     return {
+      date: new Date(),
+      list: [],
+      config: {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: false
+      },
       lists_of_vitamins: [],
       list_of_vitamin: [],
-      lists: []
-
+      lists: [],
+      currentList: {}
     };
+  },
+  components: {
+    flatPickr
   },
   created: function () {
     this.indexList();
@@ -29,20 +44,13 @@ export default {
     },
   }
 }
-
-
-
 </script>
     
 <template>
 
   <div class="list-index">
     <h1 class="main-title">My List</h1>
-    <div>
-      <form>
-        <input class="form-control" type="datetime-local" placeholder="Select Time" id="Time">
-      </form>
-    </div>
+
     <div>
       <div class="list" v-for="list_of_vitamin in lists" v-bind:key="list_of_vitamin.id">
         <div class="list-1">
@@ -50,13 +58,20 @@ export default {
             <input type="checkbox" class="checkbox" />
           </label>
         </div>
-        <div class="list-2">
-          {{ list_of_vitamin.vitamin.name }}
+        <div class="form-group">
+          <label>Select a time</label>
+          <div class="input-group">
+            <flat-pickr v-model="list.time" :config="config" class="form-control" v-bind="list.time">
+            </flat-pickr>
+          </div>
         </div>
         <div class="list-3">
-          Intake_quantity: {{ list_of_vitamin.intake_quantity }}
+          {{ list_of_vitamin.vitamin.name }}
         </div>
         <div class="list-4">
+          Intake_quantity: {{ list_of_vitamin.intake_quantity }}
+        </div>
+        <div class="list-5">
           Intake_quantity_left: {{ list_of_vitamin.intake_quantity_left }}
         </div>
       </div>
@@ -65,10 +80,6 @@ export default {
 </template>
 
 <style>
-#Time {
-  width: 200px
-}
-
 .list {
   display: flex;
   align-items: center;
@@ -94,7 +105,7 @@ export default {
   width: 5%
 }
 
-.list-2 {
+.form-group {
   display: flex;
   align-items: center;
   background-color: #FFF;
@@ -104,7 +115,7 @@ export default {
   margin-bottom: 1rem;
   margin: 0.3rem 0.3rem;
   ;
-  width: 32%
+  width: 15%
 }
 
 .list-3 {
@@ -117,7 +128,7 @@ export default {
   margin-bottom: 1rem;
   margin: 0.3rem 0.3rem;
   ;
-  width: 32%
+  width: 26.6%
 }
 
 
@@ -130,7 +141,20 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   margin: 0.3rem 0.3rem;
-  width: 31%
+  width: 26.6%
+}
+
+
+.list-5 {
+  display: flex;
+  align-items: center;
+  background-color: #FFF;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  margin: 0.3rem 0.3rem;
+  width: 25%
 }
 
 .checkbox {

@@ -1,8 +1,8 @@
 <script setup>
+
 import { ref } from 'vue';
 const isHidden = ref(localStorage.getItem("isHidden") === "true");
 localStorage.setItem("isHidden", isHidden.value)
-
 
 </script >
 
@@ -22,7 +22,6 @@ export default {
       list_of_vitamin: [],
       errors: [],
     };
-
   },
   watch: {
     isHidden() {
@@ -80,19 +79,16 @@ export default {
 </script> 
 <template>
 
-
-
   <div class="vitamins-index">
 
     <h1 class="main-title">All Vitamins</h1>
     <div class="vitamins-index">
       <form @submit.prevent="searchVitamin">
-        <input type="text" v-model="searchTerm" placeholder="Search for a Vitamin..." />
+        <input class="search" type="text" v-model="searchTerm" placeholder="Search for a Vitamin..." />
         <!-- <button type="submit" >Search</button> -->
       </form>
     </div>
     <div>
-
       <div>
         <div class="card-mb-3" v-for="vitamin in filterVitamins()">
           <ul>
@@ -102,9 +98,7 @@ export default {
             <div class=" col-sm-4">
               <img v-bind:src="vitamin.description" class="img-responsive" alt="" />
             </div>
-
             <div class=" col-sm-8">
-
               <h2 class="card-title">{{ vitamin.name }}</h2>
               <p class="card-text">
               <h5>Used_for: {{ vitamin.used_for }}</h5>
@@ -136,6 +130,7 @@ export default {
   </div>
 
 </template>
+
 <style>
 h1 {
   text-align: center;
@@ -247,7 +242,7 @@ form {
 }
 
 
-form input {
+form .search {
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
   appearance: none;
@@ -301,7 +296,6 @@ input {
   background: none;
   display: block;
   padding: 0.5rem 1rem;
-  /* background-image: linear-gradient(to right, #19b251 50%, #ff4583e7 50%); */
   background-size: 200%;
   color: rgb(5, 5, 5);
   font-size: 1.125rem;

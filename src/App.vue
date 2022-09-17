@@ -13,6 +13,7 @@ localStorage.setItem("is_expanded", is_expanded.value)
 </script >
 
 <script>
+
 export default {
 
   data: function () {
@@ -285,11 +286,12 @@ footer {
   color: var(--grey);
 }
 
+/* 
 h3,
 .text {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-}
+} */
 
 
 .is_expanded,
