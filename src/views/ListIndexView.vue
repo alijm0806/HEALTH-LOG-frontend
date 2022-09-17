@@ -38,7 +38,11 @@ export default {
 
   <div class="list-index">
     <h1 class="main-title">My List</h1>
-
+    <div>
+      <form>
+        <input class="form-control" type="datetime-local" placeholder="Select Time" id="Time">
+      </form>
+    </div>
     <div>
       <div class="list" v-for="list_of_vitamin in lists" v-bind:key="list_of_vitamin.id">
         <div class="list-1">
@@ -61,6 +65,10 @@ export default {
 </template>
 
 <style>
+#Time {
+  width: 200px
+}
+
 .list {
   display: flex;
   align-items: center;
