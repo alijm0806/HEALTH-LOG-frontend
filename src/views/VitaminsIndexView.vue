@@ -34,10 +34,14 @@ export default {
     this.indexList();
   },
   methods: {
+    myComparator(a, b) {
+      return parseInt(a.id, 10) - parseInt(b.id, 10);
+    },
     indexVitamins: function () {
       axios.get("/vitamins.json").then((response) => {
         console.log("vitamins index", response);
         this.vitamins = response.data;
+        this.vitamins.sort(this.myComparator);
       });
     },
     filterVitamins: function () {
@@ -61,7 +65,7 @@ export default {
       });
 
     },
-    addVitamins: function (vitamin) {
+    addLists: function (vitamin) {
       this.newList.vitamin_id = vitamin.id
       console.log(this.newList)
 
@@ -81,7 +85,7 @@ export default {
 
   <div class="vitamins-index">
 
-    <h1 class="main-title">All Vitamins</h1>
+    <h1 class="main-title">VITAMINS</h1>
     <div class="vitamins-index">
       <form @submit.prevent="searchVitamin">
         <input class="search" type="text" v-model="searchTerm" placeholder="Search for a Vitamin..." />
@@ -90,13 +94,13 @@ export default {
     </div>
     <div>
       <div>
-        <div class="card-mb-3" v-for="vitamin in filterVitamins()">
+        <div class="card-mb-3" v-for="vitamin in filterVitamins()" v-bind:key="vitamin.id">
           <ul>
             <li v-for="error in errors" v-bind:key="error" id="errors">{{ error }}</li>
           </ul>
           <div class="row ">
             <div class=" col-sm-4">
-              <img v-bind:src="vitamin.description" class="img-responsive" alt="" />
+              <img v-bind:src="vitamin.image_url" class="img-responsive" alt="" />
             </div>
             <div class=" col-sm-8">
               <h2 class="card-title">{{ vitamin.name }}</h2>
@@ -105,21 +109,36 @@ export default {
               <h5>Sources: {{ vitamin.sources }}</h5>
               </p>
               <div class="row ">
-                <div class=" col-sm-6">
+                <div class="col-sm-6">
                   <div class="stats">
-                    <h4>Stats: <span>{{ (vitamin.users).length / vitamin.stats * 100}} %</span></h4>
+                    <h4>Stats: <span>{{ ((vitamin.users).length / vitamin.stats).toFixed(2) * 100}} %</span>
+                    </h4>
                     <div class="the-progress">
                       <span :style="{'width':`${parseInt((vitamin.users).length / vitamin.stats * 100)}%`}"></span>
                     </div>
                   </div>
                 </div>
-                <div class=" col-sm-6">
+
+                <div class="col-sm-6">
                   <div v-if="!vitamin_ids.includes(vitamin.id)" class="quantity-input">
-                    Quantity: <input type="text" v-model="newList.quantity" v-bind="vitamin.id">
+                    <div class="col-auto my-1">
+                      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect"></label>
+                      <select v-model="newList.quantity" v-bind:key="vitamin.name" class="custom-select mr-sm-2"
+                        id="inlineFormCustomSelect">
+                        <option selected>Choose...</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                        <option value="4">Four</option>
+                        <option value="5">Five</option>
+                      </select>
+                    </div>
                   </div>
+
                   <button v-if="!vitamin_ids.includes(vitamin.id)"
                     :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
-                    v-on:click=" addVitamins(vitamin); reloadPage()">Add To List</button>
+                    v-on:click=" addLists(vitamin); reloadPage()">Add To List</button>
+
                 </div>
               </div>
             </div>
@@ -132,10 +151,21 @@ export default {
 </template>
 
 <style>
+.col-sm-6 {
+  display: absolute;
+  min-height: 172px;
+  max-height: 172px;
+  position: relative;
+}
+
 h1 {
   text-align: center;
   margin-top: 5rem;
   margin-bottom: 5rem;
+  justify-content: center;
+  justify-items: center;
+  letter-spacing: 0.5rem;
+  color: rgb(0, 85, 255);
 }
 
 h2 {
@@ -149,7 +179,7 @@ h2 {
 .main-title {
   width: 400px;
   margin: 100px auto;
-  border: 2px solid black;
+  border: 2px solid rgb(7, 87, 207);
   padding: 10px 20px;
   font-size: 30px;
   position: relative;
@@ -262,21 +292,24 @@ form .search {
   border: none;
   background: none;
   cursor: pointer;
-  display: block;
+  position: absolute;
   padding: 0.5rem 1rem;
-  background-image: linear-gradient(to right, #19b251 50%, #ff4583e7 50%);
+  background-image: linear-gradient(to right, #00bcd4 50%, #ff4583e7 50%);
   background-size: 200%;
   color: white;
   font-size: 1.125rem;
   font-weight: bold;
   text-transform: uppercase;
   transition: 0.4s;
-  margin-left: auto;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
-
+  margin-right: 1rem;
+  margin-bottom: 0.4rem;
+  right: 0;
+  bottom: 0
 }
 
+.button-vitamins .is_hidden {
+  opacity: 0;
+}
 
 .button-vitamins:hover {
   background-position: right;
@@ -288,14 +321,11 @@ input {
 }
 
 .quantity-input {
-  position: relative;
-  display: inline-block;
+  position: absolute;
   appearance: none;
   outline: none;
   border: none;
   background: none;
-  display: block;
-  padding: 0.5rem 1rem;
   background-size: 200%;
   color: rgb(5, 5, 5);
   font-size: 1.125rem;
@@ -303,9 +333,9 @@ input {
   text-align: end;
   text-transform: uppercase;
   transition: 0.4s;
-  margin-left: 40%;
-  margin-top: 1.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  bottom: 0;
+  right: 170px
 }
 
 .card-mb-3 {
@@ -323,6 +353,7 @@ input {
   max-height: 100%;
 }
 
+
 h4 {
   display: flex;
   justify-content: space-between;
@@ -334,10 +365,14 @@ h4 {
   border-right: solid 2px rgb(184, 181, 181);
   border-top: solid 2px rgb(184, 181, 181);
   border-bottom: solid 2px rgb(184, 181, 181);
+  position: absolute;
+  bottom: 0;
+  left: 0
 }
 
 
 .stats span {
+  justify-content: flex-end;
   font-size: 25px;
   border: 1px solid #ccc;
   padding: 3px 5px;
@@ -349,7 +384,7 @@ h4 {
   height: 30px;
   background-color: #eee;
   position: relative;
-  min-width: 75%
+  min-width: 260px
 }
 
 .the-progress span {
@@ -357,6 +392,6 @@ h4 {
   left: 0;
   top: 0;
   height: 100%;
-  background-color: #19b251;
+  background-color: #00bcd4;
 }
 </style>

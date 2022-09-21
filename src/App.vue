@@ -2,7 +2,7 @@
 <script setup>
 
 import { ref } from 'vue';
-const is_expanded = ref(localStorage.getItem("is_expanded") === "true");
+const is_expanded = ref(localStorage.getItem("is_expanded") === "false");
 const ToggleMenu = () => {
   is_expanded.value = !is_expanded.value
   localStorage.setItem("is_expanded", is_expanded.value)
@@ -37,7 +37,7 @@ export default {
 
     <aside :class="`${is_expanded ? 'is_expanded' : ''}`">
       <div class="logo">
-        <img src="./assets/logo.png" alt="Vue" />
+        <img src="./assets/vitamin_logo.png" alt="Vue" />
       </div>
       <div class="menu-toggle-wrap">
         <button class="menu-toggle" v-on:click="ToggleMenu">
@@ -124,8 +124,9 @@ export default {
   display: flex;
   flex: 1 1 0;
   max-width: 100%;
-  background-image: URL("./assets/pexels-photo-3683074.png");
-  background-size: 100vh;
+  background: rgba(0, 0, 0, 0.1)url("./assets/pexels-photo-3683074.png");
+  background-size: cover;
+  background-blend-mode: darken;
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
@@ -188,12 +189,13 @@ menu.button {
 .logo {
   margin-bottom: 1rem;
   width: 2rem;
-  max-height: min-content;
-  max-width: 50%;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 img {
-  max-width: 2rem;
+  max-width: 2.8rem;
+  max-height: 5rem;
 
 }
 

@@ -40,7 +40,7 @@ export default {
 
     <div class="card border-info mb-3">
       <div class="form-Bx">Login</div>
-      <div class="card-body">
+      <div class="card-body-login">
         <h5 class="card-title"></h5>
         <p class="card-text">
         <form v-on:submit.prevent="submit()">
@@ -108,16 +108,11 @@ export default {
   justify-content: center;
   align-items: center;
   border: none;
-  width: fit-content;
+  min-width: fit-content;
+  width: 60%;
   height: 90%;
   border-radius: 40px;
   background-color: rgba(255, 255, 255, 0.7);
-}
-
-.card-body {
-  width: 25rem;
-
-  font-size: max-content
 }
 
 #floatingInput {

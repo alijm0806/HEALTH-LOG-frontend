@@ -7,6 +7,12 @@ import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.css";
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "/";
 
 var jwt = localStorage.getItem("jwt");

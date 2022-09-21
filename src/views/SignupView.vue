@@ -31,7 +31,7 @@ export default {
 
     <div class="card border-info mb-3">
       <div class="form-Bx">Signup</div>
-      <div class="card-body">
+      <div class="card-body-login">
         <h5 class="card-title"></h5>
         <p class="card-text">
         <form v-on:submit.prevent="submit()">
@@ -39,8 +39,10 @@ export default {
           <ul>
             <li v-for="error in errors" v-bind:key="error" id="errors">{{ error }}</li>
           </ul>
-          <p>Name: <input class="form-control" id="floatingInput" placeholder="name" type="text"
-              v-model="newUserParams.name" /></p>
+          <p>First Name: <input class="form-control" id="floatingInput" placeholder="first name" type="text"
+              v-model="newUserParams.first_name" /></p>
+          <p>Last Name: <input class="form-control" id="floatingInput" placeholder="last name" type="text"
+              v-model="newUserParams.last_name" /></p>
           <p>Email: <input class="form-control" id="floatingInput" placeholder="name@example.com" type="email"
               v-model="newUserParams.email" />
           </p>
@@ -87,7 +89,7 @@ export default {
   color: #ff4584
 }
 
-.card-body {
+.card-body-login {
   width: 25rem;
 
   font-size: max-content

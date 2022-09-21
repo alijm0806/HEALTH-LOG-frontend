@@ -106,21 +106,33 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column
+  flex-direction: column;
+  background: rgb(0, 0, 0, 0.1)url("../assets/AdobeStock_268081648.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: -700px;
+
+}
+
+.contact .content {
+  max-width: 800px;
+  text-align: center;
+
 }
 
 .contact .content h2 {
-  font-size: 36px;
+  font-size: 50px;
   font-weight: 500;
-  color: #fff;
+  color: rgb(0, 85, 255);
 
 }
 
 
 .contact .content p {
-
+  font-size: 20px;
   font-weight: 300;
-  color: #fff;
+  color: rgb(16, 16, 16);
+  margin-bottom: 50px;
 
 }
 
@@ -149,7 +161,7 @@ export default {
 .container-contact .contactInfo .box #contact-icons {
   min-width: 60px;
   height: 60px;
-  background: #fff;
+  background: rgb(16, 16, 16);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,23 +170,23 @@ export default {
 }
 
 .container-contact .contactInfo .box .text {
-  color: #fff;
+  color: rgb(6, 6, 6);
   display: flex;
   margin-left: 20 px;
-  font-size: 16px;
+  font-size: 18px;
   flex-direction: column;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .container-contact .contactInfo .box .text h3 {
-  color: #00bcd4;
+  color: rgb(0, 85, 255);
   font-weight: 500;
 }
 
 .contactForm {
   width: 60%;
   padding: 40px;
-  background: #fff;
+  background: rgb(255, 255, 255, 0.5);
 }
 
 
@@ -221,7 +233,7 @@ export default {
 .contactForm .inputBox input:valid~.messages {
   color: #e91e63;
   font-size: 20px;
-  transform: translateY(-80px);
+  transform: translateY(-90px);
 
 }
 

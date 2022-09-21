@@ -1,183 +1,94 @@
 <script>
 import axios from "axios";
-import flatPickr from 'vue-flatpickr-component';
-import 'flatpickr/dist/flatpickr.css';
-import 'flatpickr/dist/themes/material_blue.css';
 
 export default {
   data: function () {
     return {
-      date: new Date(),
-      list: [],
-      config: {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i",
-        time_24hr: false
-      },
-      lists_of_vitamins: [],
-      list_of_vitamin: [],
       lists: [],
-      currentList: {}
     };
   },
-  components: {
-    flatPickr
-  },
   created: function () {
-    this.indexList();
+    this.indexList()
   },
   methods: {
+    myComparator(a, b) {
+      return parseInt(a.id, 10) - parseInt(b.id, 10);
+    },
     indexList: function () {
       axios.get("/lists_of_vitamins.json").then((response) => {
-        console.log("list index", response);
-        this.lists_of_vitamins = response.data;
-        console.log(this.lists_of_vitamins);
-        for (var i = 0; i < this.lists_of_vitamins.length; i++) {
-          for (var j = 0; j < this.lists_of_vitamins[i].quantity; j++) {
-            this.lists.push(this.lists_of_vitamins[i]);
-
-          }
-        }
-        console.log(this.lists)
+        console.log("lists_of_vitamins show", response);
+        this.lists = response.data;
+        console.log(this.lists.sort(this.myComparator));
       })
     },
-  }
+    updateList: function () {
+
+      this.lists_of_vitamin.intake_quantity = 1
+      this.lists_of_vitamin.intake_quantity_left = 1
+      console.log('updating list...')
+      axios.patch(`/lists_of_vitamins/286.json`, this.lists_of_vitamin).then(response => {
+        console.log(response.data);
+        // this.$router.push(`/recipes/${this.recipe.id}`);
+      })
+    },
+  },
 }
+
 </script>
-    
+  
 <template>
 
-  <div class="list-index">
+  <div class="lists-index">
     <h1 class="main-title">My List</h1>
-
-    <div>
-      <div class="list" v-for="list_of_vitamin in lists" v-bind:key="list_of_vitamin.id">
-        <div class="list-1">
-          <label>
-            <input type="checkbox" class="checkbox" />
-          </label>
-        </div>
-        <div class="form-group">
-          <label>Select a time</label>
-          <div class="input-group">
-            <flat-pickr v-model="list.time" :config="config" class="form-control" v-bind="list.time">
-            </flat-pickr>
+    <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-6" v-for="list in lists">
+          <div class="card my-2 list-group-item-success shadow-lg">
+            <div class="card-body">
+              <div class="row ">
+                <div class="col-sm-4 flex-column justify-content-center">
+                  <img v-bind:src="list.vitamin.images" class="show-img" alt="show-img">
+                </div>
+                <div class="col-sm-7 d-flex flex-column justify-content-center">
+                  <ul class="list-group">
+                    <li class="list-group-item">Name: <span class="fw-bold">{{ list.vitamin.name }}</span></li>
+                    <li class="list-group-item">Quantity: <span class="fw-bold">{{ list.quantity }}</span></li>
+                    <li class="list-group-item">Intakes: <span class="fw-bold">{{ list.user_id
+                    }}</span></li>
+                  </ul>
+                </div>
+                <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
+                  <a v-bind:href="`/vitamins/mylist/${list.id}`" class="btn btn-warning my-1">
+                    <i class="fa fa-eye"></i>
+                  </a>
+                  <a v-bind:href="`/vitamins/mylist/${list.id}/edit`" class="btn btn-primary my-1">
+                    <i class="fa fa-pen"></i>
+                  </a>
+                  <button class="btn btn-danger my-1">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="list-3">
-          {{ list_of_vitamin.vitamin.name }}
-        </div>
-        <div class="list-4">
-          Intake_quantity: {{ list_of_vitamin.intake_quantity }}
-        </div>
-        <div class="list-5">
-          Intake_quantity_left: {{ list_of_vitamin.intake_quantity_left }}
         </div>
       </div>
     </div>
+
+
   </div>
 </template>
-
+  
 <style>
-.list {
-  display: flex;
-  align-items: center;
-  height: 90%;
-  background-color: rgba(103, 96, 96, 0.25);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  margin: 1rem 0;
-}
+.show-img {
 
-.list-1 {
-  display: flex;
-  align-items: center;
-  background-color: #FFF;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  margin: 0.3rem 0.3rem;
-  ;
-  width: 5%
-}
-
-.form-group {
-  display: flex;
-  align-items: center;
-  background-color: #FFF;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  margin: 0.3rem 0.3rem;
-  ;
-  width: 15%
-}
-
-.list-3 {
-  display: flex;
-  align-items: center;
-  background-color: #FFF;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  margin: 0.3rem 0.3rem;
-  ;
-  width: 26.6%
-}
-
-
-.list-4 {
-  display: flex;
-  align-items: center;
-  background-color: #FFF;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  margin: 0.3rem 0.3rem;
-  width: 26.6%
-}
-
-
-.list-5 {
-  display: flex;
-  align-items: center;
-  background-color: #FFF;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
-  margin: 0.3rem 0.3rem;
-  width: 25%
-}
-
-.checkbox {
-  display: flex;
-  align-items: center;
+  border-radius: 50%;
+  display: grid;
   justify-content: center;
-  padding: 2px 2px 2px 2px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid #3A82EE;
-  box-shadow: 0px 0px 4px rgba(58, 130, 238, 0.75);
-}
-
-.checkbox::after {
-  content: "";
-  display: block;
-  opacity: 0;
-  width: 0px;
-  height: 0px;
-  background-color: #3A82EE;
-  box-shadow: 0px 0px 4px rgba(58, 130, 238, 0.75);
-  border-radius: 50%;
-  transition: 0.2s ease-in-out;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 </style>

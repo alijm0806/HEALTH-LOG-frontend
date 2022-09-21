@@ -6,6 +6,7 @@ import LoginView from "../views/LoginView.vue";
 import LogoutView from "../views/LogoutView.vue";
 import VitaminsIndexView from "../views/VitaminsIndexView.vue";
 import ListIndexView from "../views/ListIndexView.vue"
+import ListShowView from "../views/ListShowView.vue"
 
 const routes = [
 
@@ -41,8 +42,13 @@ const routes = [
   },
   {
     path: "/vitamins/mylist",
-    name: "list-index",
+    name: "lists-index",
     component: ListIndexView
+  },
+  {
+    path: "/vitamins/mylist/:id",
+    name: "list-show",
+    component: ListShowView
   },
   {
     path: '/about',
