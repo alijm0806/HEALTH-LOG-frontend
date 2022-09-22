@@ -86,12 +86,14 @@ export default {
   <div class="vitamins-index">
 
     <h1 class="main-title">VITAMINS</h1>
-    <div class="vitamins-index">
-      <form @submit.prevent="searchVitamin">
-        <input class="search" type="text" v-model="searchTerm" placeholder="Search for a Vitamin..." />
-        <!-- <button type="submit" >Search</button> -->
-      </form>
+
+    <div class="search-box" @submit.prevent="searchVitamin">
+      <input class="search-txt" type="text" v-model="searchTerm" placeholder="Type to Search" />
+      <a class="search-btn" @click="searchVitamin">
+        <i class="fa fa-search"></i>
+      </a>
     </div>
+
     <div>
       <div>
         <div class="card-mb-3" v-for="vitamin in filterVitamins()" v-bind:key="vitamin.id">
@@ -111,7 +113,7 @@ export default {
               <div class="row ">
                 <div class="col-sm-6">
                   <div class="stats">
-                    <h4>Stats: <span>{{ ((vitamin.users).length / vitamin.stats).toFixed(2) * 100}} %</span>
+                    <h4>Frequency: <span>{{ ((vitamin.users).length / vitamin.stats).toFixed(2) * 100}} %</span>
                     </h4>
                     <div class="the-progress">
                       <span :style="{'width':`${parseInt((vitamin.users).length / vitamin.stats * 100)}%`}"></span>
@@ -120,11 +122,10 @@ export default {
                 </div>
 
                 <div class="col-sm-6">
-                  <div v-if="!vitamin_ids.includes(vitamin.id)" class="quantity-input">
+                  <!-- <div v-if="!vitamin_ids.includes(vitamin.id)" class="quantity-input">
                     <div class="col-auto my-1">
                       <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect"></label>
-                      <select v-model="newList.quantity" v-bind:key="vitamin.name" class="custom-select mr-sm-2"
-                        id="inlineFormCustomSelect">
+                      <select v-model="newList.quantity" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                         <option selected>Choose...</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -133,7 +134,7 @@ export default {
                         <option value="5">Five</option>
                       </select>
                     </div>
-                  </div>
+                  </div> -->
 
                   <button v-if="!vitamin_ids.includes(vitamin.id)"
                     :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
@@ -151,6 +152,57 @@ export default {
 </template>
 
 <style>
+.search-box {
+  position: absolute;
+  top: 13%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #2f3640;
+  height: 60px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.search-box:hover .search-txt {
+  width: 290px;
+  padding: 0 6px;
+}
+
+.search-box:hover .search-btn {
+  background: white;
+}
+
+.search-btn {
+  color: #00bcd4;
+  float: right;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #2f3640;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+
+
+.search-txt {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: white;
+  font-size: 30px;
+  transition: 0.4s;
+  line-height: 10px;
+  width: 0px;
+}
+
 .col-sm-6 {
   display: absolute;
   min-height: 172px;

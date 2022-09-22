@@ -22,7 +22,7 @@
           </div>
           <div class="text">
             <h3>Address</h3>
-            <p>Austin, TX</p>
+            <p>Congress st, Austin, TX</p>
           </div>
         </div>
 
@@ -66,10 +66,30 @@
           <div class="inputBox">
             <input type="submit" required="required" value="Send">
           </div>
+
+          <div class="wrapper">
+            <div class="icon facebook">
+              <div class="toolip">Facebook</div>
+              <span><i class="fa-brands fa-facebook"></i></span>
+            </div>
+            <div class="icon twitter">
+              <div class="toolip">Twitter</div>
+              <span><i class="fa-brands fa-twitter"></i></span>
+            </div>
+            <div class="icon instagram">
+              <div class="toolip">Instagram</div>
+              <span><i class="fa-brands fa-instagram"></i></span>
+            </div>
+            <div class="icon whatsapp">
+              <div class="toolip">whatsapp</div>
+              <span><i class="fa-brands fa-whatsapp"></i></span>
+            </div>
+          </div>
+
+
         </form>
       </div>
     </div>
-
 
   </section>
 
@@ -98,6 +118,106 @@ export default {
 
 }
 
+.wrapper {
+  display: inline-flex;
+  margin-top: 70px
+}
+
+.wrapper .icon {
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon span {
+  position: relative;
+  height: 60px;
+  width: 60px;
+  display: block;
+  background: #fff;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.wrapper .icon span i {
+  line-height: 60px;
+  font-size: 25px;
+}
+
+.wrapper .icon:hover span {
+  color: #fff;
+}
+
+.wrapper .icon .toolip {
+  position: absolute;
+  top: 0px;
+  background: #fff;
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 18px;
+  border-radius: 25%;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover .toolip {
+  opacity: 1;
+  pointer-events: auto;
+  top: -70px;
+}
+
+.wrapper .icon .toolip:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  background: #fff;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wrapper .icon:hover span,
+.wrapper .icon:hover .toolip {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.4);
+}
+
+.wrapper .facebook:hover span,
+.wrapper .facebook:hover .toolip,
+.wrapper .facebook:hover .toolip:before {
+  background: #3B5999;
+}
+
+.wrapper .twitter:hover span,
+.wrapper .twitter:hover .toolip,
+.wrapper .twitter:hover .toolip:before {
+  background: #46C1F6;
+}
+
+.wrapper .instagram:hover span,
+.wrapper .instagram:hover .toolip,
+.wrapper .instagram:hover .toolip:before {
+  background: #e1306c;
+}
+
+.wrapper .whatsapp:hover span,
+.wrapper .whatsapp:hover .toolip,
+.wrapper .whatsapp:hover .toolip:before {
+  background: #31c345;
+}
 
 .contact {
   position: relative;
@@ -170,7 +290,7 @@ export default {
 }
 
 .container-contact .contactInfo .box .text {
-  color: rgb(6, 6, 6);
+  color: #4ade80;
   display: flex;
   margin-left: 20 px;
   font-size: 18px;
@@ -179,7 +299,7 @@ export default {
 }
 
 .container-contact .contactInfo .box .text h3 {
-  color: rgb(0, 85, 255);
+  color: white;
   font-weight: 500;
 }
 
@@ -273,6 +393,10 @@ export default {
   .contactForm {
     width: 100%;
   }
+
+
+
+
 
 }
 </style>

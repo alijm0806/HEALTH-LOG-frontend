@@ -7,6 +7,7 @@ import LogoutView from "../views/LogoutView.vue";
 import VitaminsIndexView from "../views/VitaminsIndexView.vue";
 import ListIndexView from "../views/ListIndexView.vue"
 import ListShowView from "../views/ListShowView.vue"
+import ListEditView from "../views/ListEditView.vue"
 
 const routes = [
 
@@ -49,6 +50,11 @@ const routes = [
     path: "/vitamins/mylist/:id",
     name: "list-show",
     component: ListShowView
+  },
+  {
+    path: "/vitamins/mylist/:id/edit",
+    name: "list-edit",
+    component: ListEditView
   },
   {
     path: '/about',

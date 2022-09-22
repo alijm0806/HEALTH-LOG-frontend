@@ -42,6 +42,16 @@ export default {
 
       })
     },
+    updateList: function () {
+
+      this.lists_of_vitamin.quantity = 3
+
+      console.log('updating list...')
+      axios.patch(`/lists_of_vitamins/345.json`, this.lists_of_vitamin).then(response => {
+        console.log(response.data);
+        // this.$router.push(`/recipes/${this.recipe.id}`);
+      })
+    },
 
   }
 }
@@ -55,9 +65,9 @@ export default {
     <div v-bind:key="list.id" :class="`${list.id % 2==0 ? 'odd-list' : 'even-list' }`">
 
       <div class="list-1">
-        <!-- <label>
+        <label>
           <input type="checkbox" class="checkbox" v-on:click="updateList()" v-bind:key="lists_of_vitamin.quantity" />
-        </label> -->
+        </label>
       </div>
       <div class="form-group">
         <label>time: </label>
@@ -70,10 +80,10 @@ export default {
         {{ lists_of_vitamin.vitamin.name }}
       </div>
       <div class="list-4">
-        Intake_quantity: {{ lists_of_vitamin.intake_quantity }}
+        Quantity: {{ lists_of_vitamin.quantity }}
       </div>
       <div class="list-5">
-        Intake_quantity_left: {{ lists_of_vitamin.intake_quantity_left }}
+        ID: {{ lists_of_vitamin.id }}
       </div>
     </div>
 

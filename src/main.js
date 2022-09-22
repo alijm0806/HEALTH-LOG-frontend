@@ -8,8 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.css";
 import { library } from '@fortawesome/fontawesome-svg-core'
-
 import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 

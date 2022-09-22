@@ -5,9 +5,11 @@ export default {
   data: function () {
     return {
       lists: [],
+      list: {},
+      currentList: {}
     };
   },
-  created: function () {
+  mounted: function () {
     this.indexList()
   },
   methods: {
@@ -21,17 +23,17 @@ export default {
         console.log(this.lists.sort(this.myComparator));
       })
     },
-    updateList: function () {
-
-      this.lists_of_vitamin.intake_quantity = 1
-      this.lists_of_vitamin.intake_quantity_left = 1
-      console.log('updating list...')
-      axios.patch(`/lists_of_vitamins/286.json`, this.lists_of_vitamin).then(response => {
-        console.log(response.data);
-        // this.$router.push(`/recipes/${this.recipe.id}`);
+    deleteList: function (thelist) {
+      console.log("deleting list..");
+      console.log(this.currentList);
+      axios.delete("/lists_of_vitamins/" + thelist.id + ".json").then(response => {
+        console.log(response.data)
       })
     },
-  },
+    reloadPage() {
+      window.location.reload();
+    },
+  }
 }
 
 </script>
@@ -51,9 +53,11 @@ export default {
                 </div>
                 <div class="col-sm-7 d-flex flex-column justify-content-center">
                   <ul class="list-group">
-                    <li class="list-group-item">Name: <span class="fw-bold">{{ list.vitamin.name }}</span></li>
-                    <li class="list-group-item">Quantity: <span class="fw-bold">{{ list.quantity }}</span></li>
-                    <li class="list-group-item">Intakes: <span class="fw-bold">{{ list.user_id
+                    <li class="list-group-item">Name: <span class="fw-bold">{{ list.vitamin.name}}</span>
+                    </li>
+                    <li class="list-group-item">Quantity: <span class="fw-bold">{{ list.quantity}}</span>
+                    </li>
+                    <li class="list-group-item">Intakes: <span class="fw-bold">{{ list.id
                     }}</span></li>
                   </ul>
                 </div>
@@ -64,7 +68,7 @@ export default {
                   <a v-bind:href="`/vitamins/mylist/${list.id}/edit`" class="btn btn-primary my-1">
                     <i class="fa fa-pen"></i>
                   </a>
-                  <button class="btn btn-danger my-1">
+                  <button class="btn btn-danger my-1" v-on:click="deleteList(list); reloadPage()">
                     <i class="fa fa-trash"></i>
                   </button>
                 </div>
@@ -74,8 +78,6 @@ export default {
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
   
@@ -90,5 +92,11 @@ export default {
   height: 100%;
   max-height: 100%;
   object-fit: cover;
+}
+
+#inlineFormCustomSelect {
+  display: flex;
+  align-items: center;
+  justify-content: content;
 }
 </style>
