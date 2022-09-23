@@ -37,6 +37,20 @@ export default {
         console.log(response.data)
       })
     },
+    refreshList: function (currentList) {
+      for (var i = 0; i < this.lists.length; i++) {
+        currentList.intake_quantity_left = currentList.quantity
+        currentList.intake_quantity = 0
+        console.log('looping....')
+        this.currentList.intake_quantity_left = this.lists[i].quantity;
+        this.lists[i].intake_quantity = 0;
+        axios.patch("/lists_of_vitamins/" + this.lists[i].id + ".json", this.currentList).then(response => {
+          console.log(response.data);
+          // this.$router.push("/vitamins/mylist");
+        })
+      }
+      console.log(this.lists.sort(this.myComparator));
+    },
     reloadPage() {
       window.location.reload();
     },
@@ -49,6 +63,14 @@ export default {
 
   <div class="lists-index">
     <h1 class="main-title">My List</h1>
+    <div>
+      <div class="refresh">
+        <button class="btn btn-danger " v-on:click="refreshList(currentList); reloadPage()">
+          <i class="fa fa-refresh"></i>
+        </button>
+        <p id="refresh-p">Refresh for a New Day....</p>
+      </div>
+    </div>
     <div class="container mt-3">
       <div class="row">
         <div class="col-md-6" v-for="list in lists">
@@ -65,12 +87,14 @@ export default {
                     <li :class="`${list.quantity !==null ? 'list-group-item' : 'warning-item' }`">
                       Daily Quantity: <span class="fw-bold">{{ list.quantity}}</span>
                     </li>
-                    <li class="list-group-item">Intakes Left: <span class="fw-bold">{{list.intake_quantity_left !==null
+                    <li class="list-group-item">Intakes Left: <span class="fw-bold">{{list.intake_quantity_left
+                    !==null
                     ?
                     list.intake_quantity_left : ''}}
                       </span>
                     </li>
-                    <li class="list-group-item">Last Intake was: <span class="fw-bold">{{list.quantity !==null ?
+                    <li class="list-group-item">Last Intake was: <span class="fw-bold">{{list.intake_quantity !== 0 &&
+                    list.intake_quantity !==null ?
                     moment(list.updated_at).fromNow() : ""}}
                       </span>
                     </li>
@@ -96,10 +120,18 @@ export default {
         </div>
       </div>
     </div>
+
   </div>
 </template>
   
 <style>
+#refresh-p {
+  color: blueviolet;
+  font-size: larger;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
 .warning-item {
   background-color: rgb(0, 191, 255)
 }

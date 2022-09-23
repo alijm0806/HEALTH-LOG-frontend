@@ -92,6 +92,10 @@ export default {
             <button class="btn btn-success" v-on:click="updateList(currentLists_of_vitamin)"
               v-bind="lists_of_vitamin.id">SAVE</button>
           </div>
+          <router-link to="/vitamins/mylist">
+            <button class="btn btn-info" id="edit-btn">
+              GO BACK </button>
+          </router-link>
         </div>
 
         <div class="col-lg-6 ">
