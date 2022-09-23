@@ -17,8 +17,10 @@
     "bootstrap": "^5.2.1",
     "core-js": "^3.8.3",
     "flatpickr": "^4.6.13",
+    "moment": "^2.29.4",
     "vue": "^3.2.13",
     "vue-flatpickr-component": "^9.0.6",
+    "vue-moment": "^4.1.0",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {

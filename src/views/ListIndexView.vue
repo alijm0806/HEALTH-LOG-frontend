@@ -1,9 +1,16 @@
+<script setup>
+var moment = require('moment');
+</script>
+
 <script>
 import axios from "axios";
+import moment from 'moment'
 
 export default {
+
   data: function () {
     return {
+      moment: moment,
       lists: [],
       list: {},
       currentList: {}
@@ -18,7 +25,7 @@ export default {
     },
     indexList: function () {
       axios.get("/lists_of_vitamins.json").then((response) => {
-        console.log("lists_of_vitamins show", response);
+        console.log("lists_of_vitamins index", response);
         this.lists = response.data;
         console.log(this.lists.sort(this.myComparator));
       })
@@ -49,17 +56,28 @@ export default {
             <div class="card-body">
               <div class="row ">
                 <div class="col-sm-4 flex-column justify-content-center">
-                  <img v-bind:src="list.vitamin.images" class="show-img" alt="show-img">
+                  <img v-bind:src="list.vitamin.images" class="index-img" alt="index-img">
                 </div>
                 <div class="col-sm-7 d-flex flex-column justify-content-center">
                   <ul class="list-group">
                     <li class="list-group-item">Name: <span class="fw-bold">{{ list.vitamin.name}}</span>
                     </li>
-                    <li class="list-group-item">Quantity: <span class="fw-bold">{{ list.quantity}}</span>
+                    <li :class="`${list.quantity !==null ? 'list-group-item' : 'warning-item' }`">
+                      Daily Quantity: <span class="fw-bold">{{ list.quantity}}</span>
                     </li>
-                    <li class="list-group-item">Intakes: <span class="fw-bold">{{ list.id
-                    }}</span></li>
+                    <li class="list-group-item">Intakes Left: <span class="fw-bold">{{list.intake_quantity_left !==null
+                    ?
+                    list.intake_quantity_left : ''}}
+                      </span>
+                    </li>
+                    <li class="list-group-item">Last Intake was: <span class="fw-bold">{{list.quantity !==null ?
+                    moment(list.updated_at).fromNow() : ""}}
+                      </span>
+                    </li>
                   </ul>
+
+                  <small v-if="list.quantity ==null" class="text-danger"><i
+                      class="fa fa-exclamation-triangle"></i>Please enter yourDaily quantity</small>
                 </div>
                 <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
                   <a v-bind:href="`/vitamins/mylist/${list.id}`" class="btn btn-warning my-1">
@@ -82,7 +100,11 @@ export default {
 </template>
   
 <style>
-.show-img {
+.warning-item {
+  background-color: rgb(0, 191, 255)
+}
+
+.index-img {
 
   border-radius: 50%;
   display: grid;

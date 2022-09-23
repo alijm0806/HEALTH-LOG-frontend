@@ -19,7 +19,7 @@ export default {
       list: [],
       lists: [],
       checkbox: true,
-      currentLists_of_vitamin: {}
+      currentLists_of_vitamin: {},
     };
   },
   components: {
@@ -44,7 +44,7 @@ export default {
       })
     },
     updateList: function (currentLists_of_vitamin) {
-
+      currentLists_of_vitamin.intake_quantity_left = currentLists_of_vitamin.quantity
       console.log('updating list...')
       axios.patch("/lists_of_vitamins/" + this.lists_of_vitamin.id + ".json", this.currentLists_of_vitamin).then(response => {
         console.log(response.data);
@@ -61,42 +61,42 @@ export default {
   <div class="list-show">
     <h1 class="main-title">{{lists_of_vitamin.vitamin.name}}</h1>
     <div class="container mt-3">
-      <div class="row">
-        <div class="col-md-6">
+      <div class="row" id="edit-row">
+        <div class="col-lg-6 ">
           <div class="card my-2 list-group-item-success shadow-lg">
-            <div class="card-body">
+            <div class="card-body ">
               <div class="row ">
-
                 <ul class="list-group">
-                  <li class="list-group-item">Name: <span class="fw-bold">{{ lists_of_vitamin.vitamin.name}}</span>
+                  <p class="edit-p">Choose your daily intakes:</p>
+                  Name: <li class="list-group-item"><span class="fw-bold">{{
+                  lists_of_vitamin.vitamin.name}}</span>
                   </li>
-                  <li class="list-group-item">Quantity: <label class="mr-sm-2 sr-only"
+                  Daily Quantity: <li class="list-group-item"><label class="mr-sm-2 sr-only"
                       for="inlineFormCustomSelect"></label>
-                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
-                      v-model="currentLists_of_vitamin.quantity">
-                      <option selected>Choose...</option>
-                      <option value="1">One</option>
+                    <select class="form-control" v-model="currentLists_of_vitamin.quantity">
+                      <option disabled selected value> -- select an option --</option>
+                      <option value="1" selected>One</option>
                       <option value="2">Two</option>
                       <option value="3">Three</option>
                       <option value="4">Four</option>
                       <option value="5">Five</option>
-
                     </select>
                   </li>
-                  <li class="list-group-item">Intakes: <span class="fw-bold">{{ list.id
-                  }}</span></li>
+
                 </ul>
               </div>
             </div>
           </div>
+          <br>
+          <div class="edit-btn">
+            <button class="btn btn-success" v-on:click="updateList(currentLists_of_vitamin)"
+              v-bind="lists_of_vitamin.id">SAVE</button>
+          </div>
         </div>
 
-        <div class="col-sm-6 flex-column justify-content-center">
+        <div class="col-lg-6 ">
           <img v-bind:src="lists_of_vitamin.vitamin.images" class="show-img" alt="show-img">
         </div>
-
-        <button class="btn btn-success" id="edit-btn" v-on:click="updateList(currentLists_of_vitamin)"
-          v-bind="lists_of_vitamin.id">EDIT</button>
 
       </div>
     </div>
@@ -106,18 +106,35 @@ export default {
 </template>
     
 <style>
-#edit-btn {
+.show-img {
+  /* display: grid; */
+  width: 70%;
+  max-width: 70%;
+  object-fit: cover;
+  height: 60%;
+  max-height: 60%;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  width: 20%;
-  height: 45px;
-  font-size: larger;
-  letter-spacing: 0.5rem;
+  margin: auto
 }
+
+#edit-row {
+  height: 50%;
+  align-items: center;
+
+
+}
+
 
 select {
   cursor: pointer;
+}
+
+.edit-p {
+  font-size: larger;
+  font-weight: bold;
+  color: blueviolet;
+  font-style: italic;
 }
 </style>
