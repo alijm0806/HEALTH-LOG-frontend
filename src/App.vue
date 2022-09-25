@@ -71,9 +71,9 @@ export default {
           <span v-if="isLoggedIn" class="text">My List</span>
         </router-link>
 
-        <router-link to="/team" class="button">
+        <router-link to="/charts" class="button">
           <span v-if="isLoggedIn" class="material-icons">group</span>
-          <span v-if="isLoggedIn" class="text">Team</span>
+          <span v-if="isLoggedIn" class="text">Charts</span>
         </router-link>
         <router-link to="/contact" class="button">
           <span v-if="isLoggedIn" class="material-icons">email</span>

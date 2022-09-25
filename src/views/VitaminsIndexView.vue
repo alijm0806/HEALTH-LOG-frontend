@@ -4,10 +4,13 @@ import { ref } from 'vue';
 const isHidden = ref(localStorage.getItem("isHidden") === "true");
 localStorage.setItem("isHidden", isHidden.value)
 
+
 </script >
 
 <script>
 import axios from "axios";
+
+
 export default {
   data: function () {
     return {
@@ -21,6 +24,8 @@ export default {
       vitamin_ids: [],
       list_of_vitamin: [],
       errors: [],
+      dismissSecs: 5,
+      dismissCountDown: 0
     };
   },
   watch: {
@@ -71,11 +76,19 @@ export default {
 
       axios.post("/lists_of_vitamins.json", this.newList).then((response) => {
         console.log("lists_of_vitamins index", response);
-        this.lists_of_vitamins.push(response.data)
+        this.lists_of_vitamins.push(response.data);
+        var alertList = document.querySelectorAll('.alert')
+        alertList.forEach(function (alert) {
+          new bootstrap.Alert(alert)
+        })
       });
+
     },
-    reloadPage() {
-      window.location.reload();
+    // reloadPage() {
+    //   window.location.reload();
+    // },
+    showAlert() {
+      this.dismissCountDown = this.dismissSecs
     },
   }
 };
@@ -84,9 +97,7 @@ export default {
 <template>
 
   <div class="vitamins-index">
-
     <h1 class="main-title">VITAMINS</h1>
-
     <div class="search-box" @submit.prevent="searchVitamin">
       <input class="search-txt" type="text" v-model="searchTerm" placeholder="Type to Search" />
       <a class="search-btn" @click="searchVitamin">
@@ -113,7 +124,7 @@ export default {
               <div class="row ">
                 <div class="col-sm-6">
                   <div class="stats">
-                    <h4>Frequency: <span>{{ ((vitamin.users).length / vitamin.stats).toFixed(2) * 100}} %</span>
+                    <h4>Frequency: <span>{{ (((vitamin.users).length / vitamin.stats)*100).toFixed(2)}} %</span>
                     </h4>
                     <div class="the-progress">
                       <span :style="{'width':`${parseInt((vitamin.users).length / vitamin.stats * 100)}%`}"></span>
@@ -122,10 +133,9 @@ export default {
                 </div>
 
                 <div class="col-sm-6">
-
                   <button v-if="!vitamin_ids.includes(vitamin.id)"
-                    :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
-                    v-on:click=" addLists(vitamin); reloadPage()">Add To List</button>
+                    :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`" v-on:click=" addLists(vitamin)"
+                    @click="showAlert=true" data-bs-dismiss="alert" aria-label="Close">Add To List</button>
 
                 </div>
               </div>

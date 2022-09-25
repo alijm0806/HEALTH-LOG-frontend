@@ -8,6 +8,7 @@ import VitaminsIndexView from "../views/VitaminsIndexView.vue";
 import ListIndexView from "../views/ListIndexView.vue"
 import ListShowView from "../views/ListShowView.vue"
 import ListEditView from "../views/ListEditView.vue"
+import ChartsView from "../views/ChartsView.vue"
 
 const routes = [
 
@@ -55,6 +56,11 @@ const routes = [
     path: "/vitamins/mylist/:id/edit",
     name: "list-edit",
     component: ListEditView
+  },
+  {
+    path: "/charts",
+    name: "charts",
+    component: ChartsView
   },
   {
     path: '/about',

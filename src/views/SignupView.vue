@@ -14,7 +14,7 @@ export default {
         .post("/users", this.newUserParams)
         .then((response) => {
           console.log(response.data);
-          this.$router.push("/login");
+          this.$router.push("/");
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
@@ -41,11 +41,19 @@ export default {
           </ul>
           <p>First Name: <input class="form-control" id="floatingInput" placeholder="first name" type="text"
               v-model="newUserParams.first_name" /></p>
+
           <p>Last Name: <input class="form-control" id="floatingInput" placeholder="last name" type="text"
               v-model="newUserParams.last_name" /></p>
+
+          <p>Gender: <input class="form-control" id="floatingInput" placeholder="Gender" type="text"
+              v-model="newUserParams.gender" /></p>
+
+          <p>Age: <input class="form-control" id="floatingInput" placeholder="age" type="text"
+              v-model="newUserParams.age" /></p>
+
           <p>Email: <input class="form-control" id="floatingInput" placeholder="name@example.com" type="email"
-              v-model="newUserParams.email" />
-          </p>
+              v-model="newUserParams.email" /></p>
+
           <p>Password: <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
               minlength="6" v-model="newUserParams.password" />
           </p>
