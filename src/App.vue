@@ -72,8 +72,12 @@ export default {
         </router-link>
 
         <router-link to="/charts" class="button">
-          <span v-if="isLoggedIn" class="material-icons">group</span>
+          <span v-if="isLoggedIn" class="material-icons">pie_chart</span>
           <span v-if="isLoggedIn" class="text">Charts</span>
+        </router-link>
+        <router-link to="/map" class="button">
+          <span v-if="isLoggedIn" class="material-icons">map</span>
+          <span v-if="isLoggedIn" class="text">Map</span>
         </router-link>
         <router-link to="/contact" class="button">
           <span v-if="isLoggedIn" class="material-icons">email</span>

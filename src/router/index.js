@@ -9,6 +9,7 @@ import ListIndexView from "../views/ListIndexView.vue"
 import ListShowView from "../views/ListShowView.vue"
 import ListEditView from "../views/ListEditView.vue"
 import ChartsView from "../views/ChartsView.vue"
+import MapView from "../views/MapView.vue"
 
 const routes = [
 
@@ -48,7 +49,7 @@ const routes = [
     component: ListIndexView
   },
   {
-    path: "/vitamins/mylist/:id",
+    path: "/vitamins/mylist/:lon",
     name: "list-show",
     component: ListShowView
   },
@@ -61,6 +62,11 @@ const routes = [
     path: "/charts",
     name: "charts",
     component: ChartsView
+  },
+  {
+    path: "/map",
+    name: "map",
+    component: MapView
   },
   {
     path: '/about',
