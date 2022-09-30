@@ -12,7 +12,7 @@ export default {
 
     };
   },
-  mounted: function () {
+  created: function () {
     this.indexAppointments()
   },
   methods: {
@@ -98,8 +98,8 @@ export default {
             </div>
 
             <div class="mb-2">
-              <button class="btn btn-success" id="edit-btn" v-on:click="addAppointments()"><i
-                  class="fa fa-plus-circle"></i> CREATE
+              <button class="btn btn-success" id="edit-btn" v-on:click="addAppointments(); reloadPage()"><i
+                  class=" fa fa-plus-circle"></i> CREATE
               </button>
 
             </div>

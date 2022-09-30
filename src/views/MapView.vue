@@ -46,7 +46,7 @@ export default {
   </div>
   <div>
 
-    <div id='map' style='width: 1100px; height: 90vh;'></div>
+    <div id='map' style='width: 900px; height: 90vh;'></div>
     <div id="geocoder" class="geocoder"></div>
   </div>
 </template>
