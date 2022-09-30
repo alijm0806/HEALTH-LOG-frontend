@@ -17,7 +17,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 
-axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://visionary-brioche-5cb49f.netlify.app/";
+axios.defaults.baseURL = process.env.NODE_ENV === "development" ? "http://localhost:3000" : "https://young-scrubland-44825.herokuapp.com/";
 
 var jwt = localStorage.getItem("jwt");
 if (jwt) {
