@@ -8,8 +8,7 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 export default {
   data: function () {
     return {
-      address: [-97.5569, 30.3408],
-      newAddress: ""
+
     };
   },
   mounted: function () {
@@ -24,13 +23,10 @@ export default {
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
       const map = new mapboxgl.Map({
         container: 'map',
-        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: 'mapbox://styles/mapbox/streets-v11',
-
-        center: this.address,
-        zoom: 13
+        center: [-97.5569, 30.3408],
+        zoom: 13,
       });
-
       const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         marker: {
@@ -38,31 +34,25 @@ export default {
         },
         mapboxgl: mapboxgl
       });
-
-      map.addControl(geocoder);
+      document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
     }
   },
-
-
 }
 </script>
 
 <template>
   <div>
-    <form v-on:submit.prevent="submit()">
-      <input type="text" v-model="newAddress">
 
-      <p><button class="btn btn-success" type="submit" value="Submit">Submit</button></p>
-    </form>
   </div>
   <div>
 
-    <div id='map' style='width: 1250px; height: 1400px;'></div>
+    <div id='map' style='width: 1100px; height: 90vh;'></div>
+    <div id="geocoder" class="geocoder"></div>
   </div>
 </template>
 
 <style>
-.geocoder-dropdown-item {
+/* .geocoder-dropdown-item {
   padding: 5px;
 }
 
@@ -78,5 +68,26 @@ export default {
 
 .mapboxgl-ctrl-geocoder--input {
   height: 50px
+} */
+
+.geocoder {
+  position: absolute;
+  z-index: 1;
+  width: 50%;
+  left: 50%;
+  margin-left: -25%;
+  top: 10px;
+}
+
+.mapboxgl-ctrl-geocoder {
+  min-width: 100%;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  margin-top: 75px;
 }
 </style>

@@ -45,11 +45,11 @@ export default {
           <p>Last Name: <input class="form-control" id="floatingInput" placeholder="last name" type="text"
               v-model="newUserParams.last_name" /></p>
 
-          <p>Gender: <input class="form-control" id="floatingInput" placeholder="Gender" type="text"
+          <!-- <p>Gender: <input class="form-control" id="floatingInput" placeholder="Gender" type="text"
               v-model="newUserParams.gender" /></p>
 
           <p>Age: <input class="form-control" id="floatingInput" placeholder="age" type="text"
-              v-model="newUserParams.age" /></p>
+              v-model="newUserParams.age" /></p> -->
 
           <p>Email: <input class="form-control" id="floatingInput" placeholder="name@example.com" type="email"
               v-model="newUserParams.email" /></p>

@@ -37,7 +37,7 @@ export default {
 
     <aside :class="`${is_expanded ? 'is_expanded' : ''}`">
       <div class="logo">
-        <img src="./assets/vitamin_logo.png" alt="Vue" />
+        <img src="./assets/Health-Medical-Logo.png" alt="Vue" />
       </div>
       <div class="menu-toggle-wrap">
         <button class="menu-toggle" v-on:click="ToggleMenu">
@@ -66,9 +66,19 @@ export default {
           <span v-if="isLoggedIn" class="text">Vitamins</span>
         </router-link>
 
+        <router-link to="/vitamins/symptoms" class="button">
+          <span v-if="isLoggedIn" class="material-icons">assistant</span>
+          <span v-if="isLoggedIn" class="text">Symptoms</span>
+        </router-link>
+
         <router-link to="/vitamins/mylist" class="button">
           <span v-if="isLoggedIn" class="material-icons">favorite</span>
           <span v-if="isLoggedIn" class="text">My List</span>
+        </router-link>
+
+        <router-link to="/Appointments" class="button">
+          <span v-if="isLoggedIn" class="material-icons">app_registration</span>
+          <span v-if="isLoggedIn" class="text">Appointments</span>
         </router-link>
 
         <router-link to="/charts" class="button">

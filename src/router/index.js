@@ -5,9 +5,13 @@ import SignupView from "../views/SignupView.vue";
 import LoginView from "../views/LoginView.vue";
 import LogoutView from "../views/LogoutView.vue";
 import VitaminsIndexView from "../views/VitaminsIndexView.vue";
+import SymptomsView from "../views/SymptomsView.vue";
 import ListIndexView from "../views/ListIndexView.vue"
 import ListShowView from "../views/ListShowView.vue"
 import ListEditView from "../views/ListEditView.vue"
+import AppointmentsView from "../views/AppointmentsView.vue"
+import AppointmentsShowView from "../views/AppointmentsShowView.vue"
+import AppointmentsEditView from "../views/AppointmentsEditView.vue"
 import ChartsView from "../views/ChartsView.vue"
 import MapView from "../views/MapView.vue"
 
@@ -44,12 +48,17 @@ const routes = [
     component: VitaminsIndexView
   },
   {
+    path: "/vitamins/symptoms",
+    name: "vitamins-symptoms",
+    component: SymptomsView
+  },
+  {
     path: "/vitamins/mylist",
     name: "lists-index",
     component: ListIndexView
   },
   {
-    path: "/vitamins/mylist/:lon",
+    path: "/vitamins/mylist/:id",
     name: "list-show",
     component: ListShowView
   },
@@ -57,6 +66,21 @@ const routes = [
     path: "/vitamins/mylist/:id/edit",
     name: "list-edit",
     component: ListEditView
+  },
+  {
+    path: "/Appointments",
+    name: "appointments-index",
+    component: AppointmentsView
+  },
+  {
+    path: "/Appointments/:id",
+    name: "appointment-show",
+    component: AppointmentsShowView
+  },
+  {
+    path: "/Appointments/:id/edit",
+    name: "appointment-edit",
+    component: AppointmentsEditView
   },
   {
     path: "/charts",

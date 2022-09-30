@@ -6,7 +6,7 @@ localStorage.setItem("isHidden", isHidden.value)
 
 
 </script >
-
+  
 <script>
 import axios from "axios";
 
@@ -52,7 +52,7 @@ export default {
     filterVitamins: function () {
       return this.vitamins.filter(vitamin => {
         var lowerSearchTerm = this.searchTerm.toLowerCase();
-        var lowerVitaminDeficiency = vitamin.name.toLowerCase();
+        var lowerVitaminDeficiency = vitamin.deficiency.toLowerCase();
         return lowerVitaminDeficiency.includes(this.searchTerm);
       })
     },
@@ -87,21 +87,19 @@ export default {
     reloadPage() {
       window.location.reload();
     },
-    showAlert() {
-      this.dismissCountDown = this.dismissSecs
-    },
   }
 };
 
 </script> 
 <template>
 
-  <div class="vitamins-index">
+  <div class="vitamins-recommendations">
 
-    <h1 class="main-title">VITAMINS</h1>
+    <h1 class="main-title">SYMPTOMS</h1>
     <div class="recommendations">
+      <p>Recommendations :</p>
       <div class="search-box" @submit.prevent="searchVitamin">
-        <input class="search-txt" type="text" v-model="searchTerm" placeholder="Type a Vitamin Name" />
+        <input class="search-txt" type="text" v-model="searchTerm" placeholder="Type Symptoms to Search" />
         <a class="search-btn" @click="searchVitamin">
           <i class="fa fa-search"></i>
         </a>
@@ -122,33 +120,10 @@ export default {
               <h2 class="card-title">{{ vitamin.name }}</h2>
               <p class="card-text">
               <div>
-                <h5><b>Deficiency Symptoms: </b>{{ vitamin.defeciency }}</h5>
+                <h5><b>Deficiency Symptoms: </b>{{ vitamin.deficiency }}</h5>
               </div>
               <br>
-              <div>
-                <h5><b>Used For: </b>{{ vitamin.used_for }}</h5>
-              </div>
               </p>
-              <div class="row ">
-                <div class="col-sm-6">
-                  <div class="stats">
-                    <h4>Frequency: <span>{{ (((vitamin.users).length / vitamin.stats)*100).toFixed(2)}} %</span>
-                    </h4>
-                    <div class="the-progress">
-                      <span :style="{'width':`${parseInt((vitamin.users).length / vitamin.stats * 100)}%`}"></span>
-                    </div>
-                    <middle class="text-primary"> % of users who add this vitamin </middle>
-                  </div>
-                </div>
-
-                <div class="col-sm-6">
-                  <button v-if="!vitamin_ids.includes(vitamin.id)"
-                    :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
-                    v-on:click=" addLists(vitamin); reloadPage()" @click="showAlert=true" data-bs-dismiss="alert"
-                    aria-label="Close">Add To List</button>
-
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -157,11 +132,16 @@ export default {
   </div>
 
 </template>
-
+  
 <style>
 .recommendations {
   width: 100%;
   height: 100px
+}
+
+.recommendations p {
+  font-size: 35px;
+  color: rgb(0, 85, 255);
 }
 
 .search-box {
@@ -175,11 +155,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-top: 50px;
 }
 
 .search-box:hover .search-txt {
-  width: 290px;
+  width: 360px;
   padding: 0 6px;
 }
 
@@ -198,6 +178,7 @@ export default {
   justify-content: center;
   align-items: center;
   transition: 0.4s;
+  /* margin-top: 20px; */
 }
 
 
@@ -209,7 +190,7 @@ export default {
   float: left;
   padding: 0;
   color: white;
-  font-size: 30px;
+  font-size: 27px;
   transition: 0.4s;
   line-height: 10px;
   width: 0px;

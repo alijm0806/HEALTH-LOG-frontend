@@ -93,7 +93,7 @@ export default {
               v-bind="lists_of_vitamin.id">SAVE</button>
           </div>
           <router-link to="/vitamins/mylist">
-            <button class="btn btn-info" id="edit-btn">
+            <button class="btn btn-info mt-3" id="edit-btn">
               GO BACK </button>
           </router-link>
         </div>

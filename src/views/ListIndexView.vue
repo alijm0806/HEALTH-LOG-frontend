@@ -99,9 +99,10 @@ export default {
                       </span>
                     </li>
                   </ul>
-
-                  <small v-if="list.quantity ==null" class="text-danger"><i
-                      class="fa fa-exclamation-triangle"></i>Please enter yourDaily quantity</small>
+                  <router-link :to="`/vitamins/mylist/${list.id}/edit`">
+                    <small v-if="list.quantity ==null" class="text-danger"><i
+                        class="fa fa-exclamation-triangle"></i>Please enter yourDaily quantity</small>
+                  </router-link>
                 </div>
                 <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
                   <a v-bind:href="`/vitamins/mylist/${list.id}`" class="btn btn-warning my-1">
