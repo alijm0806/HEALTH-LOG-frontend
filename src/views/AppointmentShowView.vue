@@ -46,10 +46,7 @@ export default {
 </script>
     
 <template>
-  <div>
-    <div id='map' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
 
-  </div>
   <div class="appointment-show">
 
     <div class="container mt-3">
@@ -90,7 +87,10 @@ export default {
     </div>
 
   </div>
+  <div>
+    <div id='map' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
 
+  </div>
 </template>
     
 <style>
