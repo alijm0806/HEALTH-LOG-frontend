@@ -143,7 +143,6 @@ export default {
 
 <style>
 .chartBox {
-  margin-top: 250px;
   border-radius: 20px;
   border: solid 3px rgba(255, 26, 104, 1);
   background: #fff;
