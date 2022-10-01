@@ -2,8 +2,8 @@
 
 import axios from "axios";
 import mapboxgl from 'mapbox-gl'
-
-
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 export default {
   data: function () {
@@ -40,7 +40,6 @@ export default {
         console.log(this.appointment);
       })
     }
-
   }
 }
 </script>
@@ -89,7 +88,7 @@ export default {
   </div>
   <div>
     <div id='map' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
-
+    <div id="geocoder" class="geocoder"></div>
   </div>
 </template>
     
