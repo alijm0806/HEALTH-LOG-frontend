@@ -2,8 +2,7 @@
 
 import axios from "axios";
 import mapboxgl from 'mapbox-gl'
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+
 
 
 export default {
@@ -13,18 +12,17 @@ export default {
     };
   },
   created: function () {
-
-    this.showAppointment();
+    this.showAppointment()
   },
   mounted: function () {
-    this.makeMap();
+    this.makeMap()
   },
   methods: {
 
     showAppointment: function (appointment) {
       axios.get("/appointments/" + this.$route.params.id + ".json").then((response) => {
         this.appointment = response.data;
-        console.log(this.lists);
+        console.log(this.appointment);
       })
     },
     makeMap: function () {
@@ -48,7 +46,10 @@ export default {
 </script>
     
 <template>
+  <div>
+    <div id='map' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
 
+  </div>
   <div class="appointment-show">
 
     <div class="container mt-3">
@@ -89,10 +90,7 @@ export default {
     </div>
 
   </div>
-  <div>
-    <div id='map' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
 
-  </div>
 </template>
     
 <style>

@@ -6,13 +6,13 @@ import LoginView from "../views/LoginView.vue";
 import LogoutView from "../views/LogoutView.vue";
 import VitaminsIndexView from "../views/VitaminsIndexView.vue";
 import SymptomsView from "../views/SymptomsView.vue";
-import ListIndexView from "../views/ListIndexView.vue"
-import ListShowView from "../views/ListShowView.vue"
-import ListEditView from "../views/ListEditView.vue"
-import AppointmentsView from "../views/AppointmentsView.vue"
-import AppointmentsShowView from "../views/AppointmentsShowView.vue"
-import AppointmentsEditView from "../views/AppointmentsEditView.vue"
-import ChartsView from "../views/ChartsView.vue"
+import ListIndexView from "../views/ListIndexView.vue";
+import ListShowView from "../views/ListShowView.vue";
+import ListEditView from "../views/ListEditView.vue";
+import AppointmentView from "../views/AppointmentView.vue";
+import AppointmentShowView from "../views/AppointmentShowView.vue";
+import AppointmentEditView from "../views/AppointmentEditView.vue";
+import ChartsView from "../views/ChartsView.vue";
 import MapView from "../views/MapView.vue"
 
 const routes = [
@@ -70,17 +70,17 @@ const routes = [
   {
     path: "/Appointments",
     name: "appointments-index",
-    component: AppointmentsView
+    component: AppointmentView
   },
   {
     path: "/Appointments/:id",
     name: "appointment-show",
-    component: AppointmentsShowView
+    component: AppointmentShowView
   },
   {
     path: "/Appointments/:id/edit",
     name: "appointment-edit",
-    component: AppointmentsEditView
+    component: AppointmentEditView
   },
   {
     path: "/charts",
