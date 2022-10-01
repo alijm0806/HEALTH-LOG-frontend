@@ -80,8 +80,8 @@ export default {
 <style>
 .login-signup {
   position: relative;
-  width: 90%;
-  height: 50%;
+  width: 100%;
+  height: 70%;
 
 
 }
