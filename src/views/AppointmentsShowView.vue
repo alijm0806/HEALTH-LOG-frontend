@@ -4,14 +4,11 @@ import mapboxgl from 'mapbox-gl';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
+
 export default {
   data: function () {
     return {
-
       appointment: [],
-
-
-
     };
   },
   created: function () {
@@ -33,7 +30,7 @@ export default {
     makeMap: function () {
       console.log('making map...')
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
-      const map = new mapboxgl.Map({
+      const map1 = new mapboxgl.Map({
         container: 'map1',
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: 'mapbox://styles/mapbox/streets-v11',
@@ -44,7 +41,7 @@ export default {
       // Create a default Marker and add it to the map.
       const marker1 = new mapboxgl.Marker()
         .setLngLat([this.appointment.lon, this.appointment.lat])
-        .addTo(map);
+        .addTo(map1);
     }
   }
 }
@@ -96,9 +93,6 @@ export default {
   <div id='map1' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
   <div id="geocoder" class="geocoder"></div>
 
-
-  <div id='map1' style='width: 1000px; height: 90vh;'></div>
-  <div id="geocoder" class="geocoder"></div>
 </template>
     
 <style>
@@ -122,7 +116,7 @@ export default {
   min-width: 100%;
 }
 
-#map {
+#map1 {
   position: flex;
   align-items: center;
   top: 0;
