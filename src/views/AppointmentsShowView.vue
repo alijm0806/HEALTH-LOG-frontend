@@ -37,6 +37,13 @@ export default {
         center: [this.appointment.lon, this.appointment.lat],
         zoom: 13
       });
+      const geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        marker: {
+          color: 'orange'
+        },
+        mapboxgl: mapboxgl
+      });
 
       // Create a default Marker and add it to the map.
       const marker1 = new mapboxgl.Marker()
@@ -91,7 +98,7 @@ export default {
   </div>
   <div>
     <div id='map1' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
-
+    <div id="geocoder" class="geocoder"></div>
   </div>
 </template>
     
