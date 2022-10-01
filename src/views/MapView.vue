@@ -43,9 +43,6 @@ export default {
 <template>
   <div>
 
-  </div>
-  <div>
-
     <div id='map' style='width: 1000px; height: 90vh;'></div>
     <div id="geocoder" class="geocoder"></div>
   </div>
