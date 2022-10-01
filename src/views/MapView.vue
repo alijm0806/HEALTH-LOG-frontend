@@ -46,7 +46,7 @@ export default {
   </div>
   <div>
 
-    <div id='map' style='width: 900px; height: 90vh;'></div>
+    <div id='map' style='width: 1000px; height: 90vh;'></div>
     <div id="geocoder" class="geocoder"></div>
   </div>
 </template>
@@ -84,7 +84,8 @@ export default {
 }
 
 #map {
-  position: absolute;
+  position: flex;
+  align-items: center;
   top: 0;
   bottom: 0;
   width: 100%;

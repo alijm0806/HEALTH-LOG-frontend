@@ -7,18 +7,23 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 export default {
   data: function () {
     return {
+
       appointment: [],
+
+
+
     };
   },
   created: function () {
+    this.showAppointment();
 
   },
   mounted: function () {
     this.makeMap();
-    this.showAppointment();
 
   },
   methods: {
+
     showAppointment: function () {
       axios.get("/appointments/" + this.$route.params.id + ".json").then((response) => {
         this.appointment = response.data;
@@ -40,7 +45,10 @@ export default {
       const marker1 = new mapboxgl.Marker()
         .setLngLat([this.appointment.lon, this.appointment.lat])
         .addTo(map);
+
     }
+
+
   }
 }
 </script>
