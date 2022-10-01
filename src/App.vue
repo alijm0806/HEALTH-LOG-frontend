@@ -13,7 +13,7 @@ localStorage.setItem("is_expanded", is_expanded.value)
 </script >
 
 <script>
-
+import 'mapbox-gl/dist/mapbox-gl.css'
 export default {
 
   data: function () {
