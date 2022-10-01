@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from "mapbox-gl";
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
@@ -33,7 +33,7 @@ export default {
       const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [this.appointment.lon, this.appointment.lat],
+        center: [-97.5569, 30.3408],
         zoom: 13,
       });
       const geocoder = new MapboxGeocoder({
@@ -44,18 +44,13 @@ export default {
         mapboxgl: mapboxgl
       });
       document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-
-      // Create a default Marker and add it to the map.
-      const marker1 = new mapboxgl.Marker()
-        .setLngLat([this.appointment.lon, this.appointment.lat])
-        .addTo(map);
     }
   }
 }
 </script>
     
 <template>
-  <div>
+  <div class="appointment-show">
 
     <div class="container mt-3">
       <div class="row" id="show-row">
@@ -94,10 +89,9 @@ export default {
       </div>
 
     </div>
-    <div>
-      <div id='map' style='width: 1000px; height: 90vh;'></div>
-      <div id="geocoder" class="geocoder"></div>
-    </div>
+    <div id='map' style='width: 1000px; height: 90vh;'></div>
+    <div id="geocoder" class="geocoder"></div>
+
   </div>
 
 
