@@ -23,18 +23,16 @@ export default {
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
       const map = new mapboxgl.Map({
         container: 'map',
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-97.5569, 30.3408],
-        zoom: 13,
+        center: [-97.7431, 30.2672],
+        zoom: 13
       });
-      const geocoder = new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        marker: {
-          color: 'orange'
-        },
-        mapboxgl: mapboxgl
-      });
-      document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
+
+      // Create a default Marker and add it to the map.
+      const marker1 = new mapboxgl.Marker()
+        .setLngLat([-97.7431, 30.2672])
+        .addTo(map);
     }
   },
 }
