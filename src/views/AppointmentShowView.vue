@@ -86,10 +86,10 @@ export default {
     </div>
 
   </div>
-  <div>
-    <div id='map' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
-    <div id="geocoder" class="geocoder"></div>
-  </div>
+
+  <div id='map' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
+  <div id="geocoder" class="geocoder"></div>
+
 </template>
     
 <style>
@@ -98,27 +98,5 @@ export default {
   align-items: center;
 
 
-}
-
-.geocoder {
-  position: absolute;
-  z-index: 1;
-  width: 50%;
-  left: 50%;
-  margin-left: -25%;
-  top: 10px;
-}
-
-.mapboxgl-ctrl-geocoder {
-  min-width: 100%;
-}
-
-#map {
-  position: flex;
-  align-items: center;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  margin-top: 75px;
 }
 </style>
