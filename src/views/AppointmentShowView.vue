@@ -89,16 +89,17 @@ export default {
 
   </div>
   <div>
-    <div id='map' style='width: 1100px; height: 600px; position:absolute; top:0'></div>
+    <div id='map' style='width: 1100px; height: 700px; position:absolute; top:0'></div>
     <div id="geocoder" class="geocoder"></div>
   </div>
 </template>
     
 <style>
 #show-row {
-  height: 130%;
+  height: 80%;
   align-items: center;
-
-
+  margin-top: 40px;
+  scroll-behavior: auto;
+  margin-top: 500px;
 }
 </style>
