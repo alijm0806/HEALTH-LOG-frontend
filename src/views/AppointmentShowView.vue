@@ -18,13 +18,6 @@ export default {
     this.makeMap()
   },
   methods: {
-
-    showAppointment: function (appointment) {
-      axios.get("/appointments/" + this.$route.params.id + ".json").then((response) => {
-        this.appointment = response.data;
-        console.log(this.appointment);
-      })
-    },
     makeMap: function () {
       console.log('making map...')
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
@@ -40,7 +33,14 @@ export default {
       const marker1 = new mapboxgl.Marker()
         .setLngLat([this.appointment.lon, this.appointment.lat])
         .addTo(map);
+    },
+    showAppointment: function (appointment) {
+      axios.get("/appointments/" + this.$route.params.id + ".json").then((response) => {
+        this.appointment = response.data;
+        console.log(this.appointment);
+      })
     }
+
   }
 }
 </script>
