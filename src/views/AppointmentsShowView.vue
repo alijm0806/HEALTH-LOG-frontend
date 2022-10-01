@@ -34,7 +34,7 @@ export default {
       console.log('making map...')
       mapboxgl.accessToken = process.env.VUE_APP_MAPBOX_API_KEY;
       const map = new mapboxgl.Map({
-        container: 'map',
+        container: 'map1',
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [this.appointment.lon, this.appointment.lat],
@@ -45,10 +45,7 @@ export default {
       const marker1 = new mapboxgl.Marker()
         .setLngLat([this.appointment.lon, this.appointment.lat])
         .addTo(map);
-
     }
-
-
   }
 }
 </script>
@@ -96,7 +93,7 @@ export default {
 
 
   </div>
-  <div id='map' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
+  <div id='map1' style='width: 1100px; height: 800px; position:absolute; top:0'></div>
   <div id="geocoder" class="geocoder"></div>
 
 </template>
