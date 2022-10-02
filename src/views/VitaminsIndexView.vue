@@ -52,8 +52,8 @@ export default {
     filterVitamins: function () {
       return this.vitamins.filter(vitamin => {
         var lowerSearchTerm = this.searchTerm.toLowerCase();
-        var lowerVitaminDeficiency = vitamin.name.toLowerCase();
-        return lowerVitaminDeficiency.includes(this.searchTerm);
+        var lowerVitaminName = vitamin.name.toLowerCase();
+        return lowerVitaminName.includes(this.searchTerm);
       })
     },
     indexList: function () {
@@ -119,10 +119,10 @@ export default {
               <img v-bind:src="vitamin.image_url" class="img-responsive" alt="" />
             </div>
             <div class=" col-sm-8">
-              <h2 class="card-title">{{ vitamin.name }}</h2>
+              <h2>{{ vitamin.name }}</h2>
               <p class="card-text">
               <div>
-                <h5><b>Deficiency Symptoms: </b>{{ vitamin.defeciency }}</h5>
+                <h5><b>Deficiency Symptoms: </b>{{ vitamin.deficiency }}</h5>
               </div>
               <br>
               <div>
@@ -234,7 +234,7 @@ h1 {
 
 h2 {
   color: rgb(0, 85, 255);
-  font-size: 0.5rem;
+  font-size: 30px;
   margin-bottom: 0.5rem;
   border-bottom: 4px solid #ff4583ad;
   text-shadow: thistle;

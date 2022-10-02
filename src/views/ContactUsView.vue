@@ -240,7 +240,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: rgb(0, 0, 0, 0.1)url("../assets/AdobeStock_268081648.jpeg");
+  background: rgb(0, 0, 0, .1)url("../assets/AdobeStock_268081648.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: -700px;
