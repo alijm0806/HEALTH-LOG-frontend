@@ -8,7 +8,7 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 export default {
 
   data: function () {
-    setTimeout(this.makeMap, 1000);
+    setTimeout(this.makeMap, 2000);
     return {
       appointment: []
     };
