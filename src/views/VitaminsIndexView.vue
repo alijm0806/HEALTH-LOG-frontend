@@ -166,7 +166,7 @@ export default {
 
 .search-box {
   position: absolute;
-  top: 16%;
+  top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #2f3640;
@@ -209,7 +209,7 @@ export default {
   float: left;
   padding: 0;
   color: white;
-  font-size: 30px;
+  font-size: 20px;
   transition: 0.4s;
   line-height: 10px;
   width: 0px;
