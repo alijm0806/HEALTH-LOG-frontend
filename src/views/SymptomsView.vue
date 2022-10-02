@@ -120,7 +120,9 @@ export default {
               <h2 class="card-title">{{ vitamin.name }}</h2>
               <p class="card-text">
               <div>
-                <h5 id="h5"><b>Deficiency Symptoms: <br></b>{{ vitamin.deficiency }}</h5>
+                <h5 id="h5"><b>Deficiency Symptoms:
+                    <br>
+                  </b>{{ vitamin.deficiency }}</h5>
               </div>
               <br>
               </p>
@@ -142,16 +144,5 @@ export default {
 .recommendations p {
   font-size: 35px;
   color: rgb(0, 85, 255);
-}
-
-#h5 {
-  flex: 1;
-  font-size: 25px;
-
-  letter-spacing: 1px;
-  padding: 10px;
-  margin-top: 10px;
-  height: 30px;
-
 }
 </style>

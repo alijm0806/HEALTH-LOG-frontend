@@ -123,7 +123,10 @@ export default {
               <p class="card-text">
 
               <div>
-                <h5><b>Function in the Body: <br><br></b>{{ vitamin.used_for }}</h5>
+                <h5 id="h5"><b>Function in the Body:
+                    <br>
+                  </b>{{ vitamin.used_for }}
+                </h5>
               </div>
               </p>
               <div class="row ">
@@ -347,15 +350,10 @@ form .search {
   width: 100%;
 }
 
-h5 {
-  flex: 1;
-  font-size: 100px;
-  font-weight: bold;
+#h5 {
 
-  letter-spacing: 1px;
-  padding: 10px;
-  margin-top: 10px;
-  height: 30px;
+  font-size: 25px;
+  margin-top: 20px;
 
 }
 
