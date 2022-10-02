@@ -52,7 +52,7 @@ export default {
 
 <template>
 
-  <div class="appointments">
+  <div class="appointments-index">
     <h1 class="main-title">APPOINTMENTS</h1>
 
 
