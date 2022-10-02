@@ -47,18 +47,18 @@
       </div>
 
       <div class="contactForm">
-        <form>
+        <form action="https://formsubmit.co/8317f89276b81e9ae7e7ac06197eeb9b" method="POST">
           <h1>Send Message</h1>
           <div class="inputBox">
-            <input type="text" name="" required="required">
+            <input type="text" name="Name" required="required">
             <div class="messages">Full Name</div>
           </div>
           <div class="inputBox">
-            <input type="text" name="" required="required">
+            <input type="text" name="Email" required="required">
             <div class="messages">Email</div>
           </div>
           <div class="inputBox">
-            <textarea required="required"></textarea>
+            <textarea required="required" name="Message"></textarea>
             <div class="messages">Type your message....</div>
           </div>
           <div class="inputBox">
@@ -95,7 +95,8 @@
 
 </template>
 
-<script>
+<script >
+
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 
@@ -103,7 +104,21 @@ export default {
   name: 'HomeView',
   components: {
     HelloWorld
-  }
+  },
+  methods: {
+    sendEmail: function () {
+      this.sendEmail.send({
+        Host: "",
+        Username: "username",
+        Password: "password",
+        To: "",
+        From: "",
+        Subject: "",
+        Body: "Name: " + document.getElementById("name").value
+          + "<br> Email: " + document.getElementById("email").value + "<br> Message: " + document.getElementById("message").value
+      }).then(message => alert("message sent succefully"))
+    }
+  },
 }
 </script>
   
