@@ -163,7 +163,7 @@ export default {
 
 .search-box {
   position: absolute;
-  top: 13%;
+  top: 16%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #2f3640;
