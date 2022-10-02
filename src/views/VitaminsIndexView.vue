@@ -121,12 +121,9 @@ export default {
             <div class=" col-sm-8">
               <h2>{{ vitamin.name }}</h2>
               <p class="card-text">
+
               <div>
-                <h5><b>Deficiency Symptoms: </b>{{ vitamin.deficiency }}</h5>
-              </div>
-              <br>
-              <div>
-                <h5><b>Used For: </b>{{ vitamin.used_for }}</h5>
+                <h5><b>Function in the Body: <br><br></b>{{ vitamin.used_for }}</h5>
               </div>
               </p>
               <div class="row ">
@@ -350,9 +347,9 @@ form .search {
   width: 100%;
 }
 
-.h5 {
+h5 {
   flex: 1;
-  font-size: 75px;
+  font-size: 100px;
   font-weight: bold;
 
   letter-spacing: 1px;
