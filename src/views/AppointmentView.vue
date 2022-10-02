@@ -84,16 +84,16 @@ export default {
             <div class="mb-3">
               <select class="form-control" required="required" v-model="newAppointment.doctor_id">
                 <option disabled value="" selected>--select an option--</option>
-                <option value="1">Orthopedic</option>
-                <option value="2">Dermatology</option>
-                <option value="4">Allergy and immunology</option>
-                <option value="5">Family medecine</option>
-                <option value="6">Urology</option>
-                <option value="7">Pathology</option>
-                <option value="8">Psychiatry</option>
-                <option value="9">Surgery</option>
-                <option value="10">Neurology</option>
-                <option value="11">Anesthesiology</option>
+                <option value="13">Orthopedic</option>
+                <option value="14">Dermatology</option>
+                <option value="15">Allergy and immunology</option>
+                <option value="16">Family medecine</option>
+                <option value="17">Urology</option>
+                <option value="18">Pathology</option>
+                <option value="19">Psychiatry</option>
+                <option value="20">Surgery</option>
+                <option value="12">Neurology</option>
+                <option value="22">Anesthesiology</option>
               </select>
               <small class="text-danger"> Please select a doctor speciality from the list</small>
             </div>
