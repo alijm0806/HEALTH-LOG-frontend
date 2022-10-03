@@ -20,8 +20,6 @@ export default {
       vitamin_ids: [],
       list_of_vitamin: [],
       errors: [],
-      dismissSecs: 5,
-      dismissCountDown: 0
     };
   },
   watch: {
@@ -64,10 +62,6 @@ export default {
       this.newList.vitamin_id = vitamin.id
       axios.post("/lists_of_vitamins.json", this.newList).then((response) => {
         this.lists_of_vitamins.push(response.data);
-        var alertList = document.querySelectorAll('.alert')
-        alertList.forEach(function (alert) {
-          new bootstrap.Alert(alert)
-        })
       });
     },
     reloadPage() {

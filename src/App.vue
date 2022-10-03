@@ -1,6 +1,5 @@
 
 <script setup>
-
 import { ref } from 'vue';
 const is_expanded = ref(localStorage.getItem("is_expanded") === "false");
 const ToggleMenu = () => {
@@ -8,8 +7,6 @@ const ToggleMenu = () => {
   localStorage.setItem("is_expanded", is_expanded.value)
 }
 localStorage.setItem("is_expanded", is_expanded.value)
-
-
 </script >
 
 <script>
@@ -26,7 +23,6 @@ export default {
       this.isLoggedIn = !!localStorage.jwt
     }
   },
-
 }
 
 </script>
@@ -55,41 +51,41 @@ export default {
           <span v-if="!isLoggedIn" class="text">Login</span>
         </router-link>
 
-        <router-link to="/home" class="button">
+        <router-link to="/home" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">home</span>
           <span v-if="isLoggedIn" class="text">Home</span>
 
         </router-link>
 
-        <router-link to="/vitamins" class="button">
+        <router-link to="/vitamins" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">description</span>
           <span v-if="isLoggedIn" class="text">Vitamins</span>
         </router-link>
 
-        <router-link to="/vitamins/symptoms" class="button">
+        <router-link to="/vitamins/symptoms" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">assistant</span>
           <span v-if="isLoggedIn" class="text">Symptoms</span>
         </router-link>
 
-        <router-link to="/vitamins/mylist" class="button">
+        <router-link to="/vitamins/mylist" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">favorite</span>
           <span v-if="isLoggedIn" class="text">My List</span>
         </router-link>
 
-        <router-link to="/Appointments" class="button">
+        <router-link to="/Appointments" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">app_registration</span>
           <span v-if="isLoggedIn" class="text">Appointments</span>
         </router-link>
 
-        <router-link to="/charts" class="button">
+        <router-link to="/charts" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">pie_chart</span>
           <span v-if="isLoggedIn" class="text">Charts</span>
         </router-link>
-        <router-link to="/map" class="button">
+        <router-link to="/map" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">map</span>
           <span v-if="isLoggedIn" class="text">Map</span>
         </router-link>
-        <router-link to="/contact" class="button">
+        <router-link to="/contact" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">email</span>
           <span v-if="isLoggedIn" class="text">Contact</span>
         </router-link>
