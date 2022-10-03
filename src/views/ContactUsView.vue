@@ -3,12 +3,7 @@
   <section class="contact">
     <div class="content">
       <h2>Contact Us</h2>
-      <p>Lorem ipsum dolor ..................... Lorem ipsum dolor ..................... Lorem ipsum dolor
-        ..................... Lorem ipsum dolor ..................... Lorem ipsum dolor ..................... Lorem
-        ipsum dolor ..................... Lorem ipsum dolor ..................... Lorem ipsum dolor
-        ..................... Lorem ipsum dolor ..................... Lorem ipsum dolor ..................... Lorem
-        ipsum dolor ..................... Lorem ipsum dolor ..................... Lorem ipsum dolor
-        ..................... Lorem ipsum dolor .....................</p>
+      <p></p>
     </div>
     <div class="container-contact">
       <div class="contactInfo">
@@ -306,9 +301,10 @@ export default {
   color: #4ade80;
   display: flex;
   margin-left: 20 px;
-  font-size: 18px;
+  font-size: 20px;
   flex-direction: column;
-  font-weight: 400;
+  font-weight: 500;
+  background: rgb(102, 102, 102, 0.4);
 }
 
 .container-contact .contactInfo .box .text h3 {
@@ -350,7 +346,7 @@ export default {
 }
 
 .contactForm .inputBox .messages {
-  /* position: absolute; */
+
   display: inline-block;
   left: 0;
   padding: 5px 0;
