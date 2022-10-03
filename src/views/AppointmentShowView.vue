@@ -1,12 +1,10 @@
 <script>
-
 import axios from "axios";
 import mapboxgl from 'mapbox-gl'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 
 export default {
-
   data: function () {
     setTimeout(this.makeMap, 2000);
     return {
@@ -36,6 +34,7 @@ export default {
         .setLngLat([this.appointment.lon, this.appointment.lat])
         .addTo(map);
     },
+
     showAppointment: function (appointment) {
       axios.get("/appointments/" + this.$route.params.id + ".json").then((response) => {
         this.appointment = response.data;
@@ -49,7 +48,6 @@ export default {
 <template>
 
   <div class="appointment-show">
-
     <div class="container mt-3">
       <div class="row" id="show-row">
         <div class="col-lg-6 " id="edit-col">
@@ -82,11 +80,8 @@ export default {
         <div class="col-lg-6 ">
           <img v-bind:src="appointment.doctor.image_url" class="show-img" alt="show-img">
         </div>
-
       </div>
-
     </div>
-
   </div>
   <div>
     <div id='map' style='width: 1100px; height: 700px; position:absolute; top:0'></div>

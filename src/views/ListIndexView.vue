@@ -1,7 +1,3 @@
-<script setup>
-var moment = require('moment');
-</script>
-
 <script>
 import axios from "axios";
 import moment from 'moment'
@@ -25,31 +21,24 @@ export default {
     },
     indexList: function () {
       axios.get("/lists_of_vitamins.json").then((response) => {
-        console.log("lists_of_vitamins index", response);
         this.lists = response.data;
-        console.log(this.lists.sort(this.myComparator));
+        this.lists.sort(this.myComparator);
       })
     },
     deleteList: function (thelist) {
-      console.log("deleting list..");
-      console.log(this.currentList);
       axios.delete("/lists_of_vitamins/" + thelist.id + ".json").then(response => {
-        console.log(response.data)
       })
     },
     refreshList: function (currentList) {
       for (var i = 0; i < this.lists.length; i++) {
         currentList.intake_quantity_left = currentList.quantity
         currentList.intake_quantity = 0
-        console.log('looping....')
         this.currentList.intake_quantity_left = this.lists[i].quantity;
         this.lists[i].intake_quantity = 0;
         axios.patch("/lists_of_vitamins/" + this.lists[i].id + ".json", this.currentList).then(response => {
-          console.log(response.data);
-          // this.$router.push("/vitamins/mylist");
         })
       }
-      console.log(this.lists.sort(this.myComparator));
+      this.lists.sort(this.myComparator);
     },
     reloadPage() {
       window.location.reload();

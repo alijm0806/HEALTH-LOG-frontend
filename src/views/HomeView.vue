@@ -91,7 +91,7 @@ export default {
 }
 
 .landing .image img {
-  width: 500;
+  width: 100%;
   max-width: 90%;
   height: 500;
   max-height: 95%;

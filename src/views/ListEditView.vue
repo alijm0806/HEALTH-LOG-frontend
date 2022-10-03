@@ -1,8 +1,5 @@
 <script>
 import axios from "axios";
-import flatPickr from 'vue-flatpickr-component';
-import 'flatpickr/dist/flatpickr.css';
-import 'flatpickr/dist/themes/material_blue.css';
 
 export default {
   data: function () {
@@ -22,9 +19,6 @@ export default {
       currentLists_of_vitamin: {},
     };
   },
-  components: {
-    flatPickr
-  },
   watch: {
     lists() {
       localStorage.setItem('lists', JSON.stringify(this.lists))
@@ -39,19 +33,14 @@ export default {
     showList: function () {
       axios.get("/lists_of_vitamins/" + this.$route.params.id + ".json").then((response) => {
         this.lists_of_vitamin = response.data;
-        console.log(this.lists_of_vitamin);
-
       })
     },
     updateList: function (currentLists_of_vitamin) {
       currentLists_of_vitamin.intake_quantity_left = currentLists_of_vitamin.quantity
-      console.log('updating list...')
       axios.patch("/lists_of_vitamins/" + this.lists_of_vitamin.id + ".json", this.currentLists_of_vitamin).then(response => {
-        console.log(response.data);
         this.$router.push("/vitamins/mylist");
       })
     },
-
   }
 }
 </script>
@@ -67,8 +56,8 @@ export default {
             <div class="card-body ">
               <div class="row ">
                 <ul class="list-group">
-                  <p class="edit-p">Choose your daily intakes:</p>
-                  Name: <li class="list-group-item"><span class="fw-bold">{{
+                  <p class="edit-p">Select your daily intakes:</p>
+                  Vitamin Name: <li class="list-group-item"><span class="fw-bold">{{
                   lists_of_vitamin.vitamin.name}}</span>
                   </li>
                   Daily Quantity: <li class="list-group-item"><label class="mr-sm-2 sr-only"
@@ -104,8 +93,6 @@ export default {
 
       </div>
     </div>
-
-
   </div>
 </template>
     

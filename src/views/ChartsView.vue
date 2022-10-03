@@ -20,7 +20,6 @@ export default {
   name: 'HomeView',
   data: function () {
     return {
-
       vitamins: [],
       labels1: [],
       numbers1: [],
@@ -45,20 +44,14 @@ export default {
     },
     indexVitamins: function () {
       axios.get("/vitamins.json").then((response) => {
-        console.log("vitamins index", response);
         this.vitamins = response.data;
         this.vitamins.sort(this.myComparator);
-        console.log(this.vitamins);
-        console.log("LOOPING....");
 
         for (var i = 0; i < this.vitamins.length; i++) {
           // parseInt((vitamin.users).length / vitamin.stats * 100
           this.numbers1.push(parseInt((this.vitamins[i].users.length) / this.vitamins[i].stats * 100).toFixed(2));
           this.labels1.push(this.vitamins[i].name);
         };
-
-        console.log(this.labels1);
-        console.log(this.numbers1);
 
         const ctx = document.getElementById('myChart');
 
@@ -130,12 +123,9 @@ export default {
             },
           }
         });
-
       })
     }
-
   }
-
 }
 
 

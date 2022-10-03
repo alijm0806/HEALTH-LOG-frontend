@@ -19,14 +19,10 @@ export default {
     showAppointment: function () {
       axios.get("/appointments/" + this.$route.params.id + ".json").then((response) => {
         this.appointment = response.data;
-        console.log(this.appointment);
-
       })
     },
     updateList: function (currentLists_of_vitamin) {
-      console.log('updating list...')
       axios.patch("/appointments/" + this.appointment.id + ".json", this.currentAppointment).then(response => {
-        console.log(response.data);
         this.$router.push("/Appointments");
       })
     },
@@ -47,16 +43,16 @@ export default {
               <div class="edit-row ">
                 <ul class="list-group">
                   <div class="mb-2">
-                    <input type="text" class="form-control" placeholder="Address" vaue="{{appointment.address}}"
-                      v-model="currentAppointment.address">
+                    <input type="text" class="form-control" placeholder="Address"
+                      v-model="currentAppointment.address">{{this.appointment.address}}
                   </div>
                   <div class="mb-2">
                     <input type="datetime-local" class="form-control" placeholder="Date"
-                      v-model="currentAppointment.date">
+                      v-model="currentAppointment.date">{{this.appointment.date}}
                   </div>
                   <div class="mb-2">
                     <input type="text" class="form-control" placeholder="Phone Number" required="required"
-                      maxlength="10" v-model="currentAppointment.phone_number">
+                      maxlength="10" v-model="currentAppointment.phone_number">{{this.appointment.phone_number}}
                   </div>
                   <div class="mb-2">
                     <select class="form-control" v-model="currentAppointment.doctor_id">
@@ -72,6 +68,7 @@ export default {
                       <option value="10">Neurology</option>
                       <option value="11">Anesthesiology</option>
                     </select>
+                    {{this.appointment.doctor.speciality}}
                   </div>
                 </ul>
               </div>

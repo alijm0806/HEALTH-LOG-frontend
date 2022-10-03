@@ -44,7 +44,6 @@ export default {
     },
     indexVitamins: function () {
       axios.get("/vitamins.json").then((response) => {
-        console.log("vitamins index", response);
         this.vitamins = response.data;
         this.vitamins.sort(this.myComparator);
       });
@@ -58,24 +57,18 @@ export default {
     },
     indexList: function () {
       axios.get("/lists_of_vitamins.json").then((response) => {
-        console.log("list index", response);
         this.lists_of_vitamins = response.data;
-        console.log(this.lists_of_vitamins);
 
         for (var i = 0; i < this.lists_of_vitamins.length; i++) {
           this.vitamin_ids.push(this.lists_of_vitamins[i].vitamin_id)
-
         }
-        console.log(this.vitamin_ids)
       });
 
     },
     addLists: function (vitamin) {
       this.newList.vitamin_id = vitamin.id
-      console.log(this.newList)
 
       axios.post("/lists_of_vitamins.json", this.newList).then((response) => {
-        console.log("lists_of_vitamins index", response);
         this.lists_of_vitamins.push(response.data);
         var alertList = document.querySelectorAll('.alert')
         alertList.forEach(function (alert) {
@@ -94,8 +87,11 @@ export default {
 <template>
 
   <div class="vitamins-recommendations">
-
+    <!-- Title Start -->
     <h1 class="main-title">SYMPTOMS</h1>
+    <!-- Title End -->
+
+
     <div class="recommendations">
       <p>Recommendations :</p>
       <div class="search-box" @submit.prevent="searchVitamin">

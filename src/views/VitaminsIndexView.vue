@@ -1,15 +1,11 @@
 <script setup>
-
 import { ref } from 'vue';
 const isHidden = ref(localStorage.getItem("isHidden") === "true");
 localStorage.setItem("isHidden", isHidden.value)
-
-
 </script >
 
 <script>
 import axios from "axios";
-
 
 export default {
   data: function () {
@@ -44,7 +40,6 @@ export default {
     },
     indexVitamins: function () {
       axios.get("/vitamins.json").then((response) => {
-        console.log("vitamins index", response);
         this.vitamins = response.data;
         this.vitamins.sort(this.myComparator);
       });
@@ -58,37 +53,25 @@ export default {
     },
     indexList: function () {
       axios.get("/lists_of_vitamins.json").then((response) => {
-        console.log("list index", response);
         this.lists_of_vitamins = response.data;
-        console.log(this.lists_of_vitamins);
 
         for (var i = 0; i < this.lists_of_vitamins.length; i++) {
           this.vitamin_ids.push(this.lists_of_vitamins[i].vitamin_id)
-
         }
-        console.log(this.vitamin_ids)
       });
-
     },
     addLists: function (vitamin) {
       this.newList.vitamin_id = vitamin.id
-      console.log(this.newList)
-
       axios.post("/lists_of_vitamins.json", this.newList).then((response) => {
-        console.log("lists_of_vitamins index", response);
         this.lists_of_vitamins.push(response.data);
         var alertList = document.querySelectorAll('.alert')
         alertList.forEach(function (alert) {
           new bootstrap.Alert(alert)
         })
       });
-
     },
     reloadPage() {
       window.location.reload();
-    },
-    showAlert() {
-      this.dismissCountDown = this.dismissSecs
     },
   }
 };
@@ -97,8 +80,11 @@ export default {
 <template>
 
   <div class="vitamins-index">
-
+    <!-- Title Start -->
     <h1 class="main-title">VITAMINS</h1>
+    <!-- Title End -->
+
+    <!-- Search Start -->
     <div class="recommendations">
       <div class="search-box" @submit.prevent="searchVitamin">
         <input class="search-txt" type="text" v-model="searchTerm" placeholder="Type a Vitamin Name" />
@@ -107,7 +93,9 @@ export default {
         </a>
       </div>
     </div>
+    <!-- Search End -->
 
+    <!-- Vitamins Start -->
     <div>
       <div>
         <div class="card-mb-3" v-for="vitamin in filterVitamins()" v-bind:key="vitamin.id">
@@ -144,9 +132,7 @@ export default {
                 <div class="col-sm-6">
                   <button v-if="!vitamin_ids.includes(vitamin.id)"
                     :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
-                    v-on:click=" addLists(vitamin); reloadPage()" @click="showAlert=true" data-bs-dismiss="alert"
-                    aria-label="Close">Add To List</button>
-
+                    v-on:click=" addLists(vitamin); reloadPage()">Add To List</button>
                 </div>
               </div>
             </div>
@@ -154,6 +140,8 @@ export default {
         </div>
       </div>
     </div>
+    <!-- Vitamins End -->
+
   </div>
 
 </template>
@@ -166,7 +154,7 @@ export default {
 
 .search-box {
   position: absolute;
-  top: 20%;
+  top: 16%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #2f3640;

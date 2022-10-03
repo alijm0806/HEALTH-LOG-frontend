@@ -1,8 +1,6 @@
 <script>
 import axios from "axios";
-import flatPickr from 'vue-flatpickr-component';
-import 'flatpickr/dist/flatpickr.css';
-import 'flatpickr/dist/themes/material_blue.css';
+
 
 export default {
   data: function () {
@@ -24,9 +22,6 @@ export default {
       intake_quantity: 0
     };
   },
-  components: {
-    flatPickr
-  },
   watch: {
     lists() {
       localStorage.setItem('lists', JSON.stringify(this.lists))
@@ -34,31 +29,26 @@ export default {
   },
   created: function () {
     this.showList();
-
   },
   methods: {
+    myComparator(a, b) {
+      return parseInt(a.id, 10) - parseInt(b.id, 10);
+    },
 
     showList: function () {
       axios.get("/lists_of_vitamins/" + this.$route.params.id + ".json").then((response) => {
         this.lists = response.data;
-        // console.log(this.lists);
         for (var i = 0; i < this.lists.intake_quantity_left; i++) {
-
           this.nLists.push(this.lists);
-
+          this.nLists.sort(this.myComparator);
         }
-        console.log(this.lists);
-        console.log(this.nLists)
-        console.log(this.lists.updated_at)
       })
     },
 
     updateList: function (currentList) {
       this.currentList.intake_quantity = (this.lists.intake_quantity + 1);
       this.currentList.intake_quantity_left = (this.lists.intake_quantity_left - 1);
-      console.log('updating list...')
       axios.patch("/lists_of_vitamins/" + this.lists.id + ".json", this.currentList).then(response => {
-        console.log(response.data);
         this.$router.push("/vitamins/mylist");
       })
     },
@@ -70,20 +60,21 @@ export default {
   <div>
     <div class="list-show">
       <h1 class="main-title">{{lists.vitamin.name}}</h1>
-
+      <div class="mt-6">
+        <div class="row">
+          <div class="col">
+            <p class="h3 text-success fw-bold">Today's Intakes :</p>
+            <p class="fst-italic"></p>
+          </div>
+        </div>
+      </div>
       <div v-for="list in nLists" v-bind:key="list.id" :class="`${list.id % 2==0 ? 'odd-list' : 'even-list' }`">
 
         <div class="list-1">
-          <label>
-            <input type="checkbox" class="checkbox" v-on:click="updateList(currentList)"
-              v-model="currentList.intake_quantity" />
-          </label>
-        </div>
-        <div class="form-group">
-          <label>time: </label>
-          <div class="input-group">
-            <flat-pickr v-model="date" :config="config" class="form-control">
-            </flat-pickr>
+          <div class="form-check">
+            <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" v-bind="nLists.id"
+              v-on:click="updateList(currentList)" v-model="currentList.intake_quantity">
+            <label></label>
           </div>
         </div>
         <div class="list-3">
@@ -93,7 +84,7 @@ export default {
           Quantity: {{ list.quantity }}
         </div>
         <div class="list-5">
-          ID: {{ list.id }}
+          Intakes Left: {{ list.intake_quantity_left }}
         </div>
       </div>
     </div>
@@ -101,8 +92,6 @@ export default {
       <button class="btn btn-info" id="edit-btn">
         GO BACK </button>
     </router-link>
-
-
   </div>
 </template>
   
@@ -117,6 +106,7 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   margin: 1rem 0;
+  width: 80%;
 }
 
 .even-list {
@@ -129,6 +119,7 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   margin: 1rem 0;
+  width: 80%;
 }
 
 .list-1 {
@@ -140,7 +131,9 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   margin: 0.3rem 0.3rem;
-  width: 5%
+  width: 5%;
+  font-size: larger;
+  font-weight: bold;
 }
 
 .form-group {
@@ -152,7 +145,9 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   margin: 0.3rem 0.3rem;
-  width: 15%
+  width: 30%;
+  font-size: larger;
+  font-weight: bold;
 }
 
 .list-3 {
@@ -164,8 +159,9 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   margin: 0.3rem 0.3rem;
-  ;
-  width: 26.6%
+  width: 30%;
+  font-size: larger;
+  font-weight: bold;
 }
 
 
@@ -178,7 +174,9 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   margin: 0.3rem 0.3rem;
-  width: 26.6%
+  width: 30%;
+  font-size: larger;
+  font-weight: bold;
 }
 
 
@@ -191,7 +189,9 @@ export default {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-bottom: 1rem;
   margin: 0.3rem 0.3rem;
-  width: 25%
+  width: 30%;
+  font-size: larger;
+  font-weight: bold;
 }
 
 .checkbox {

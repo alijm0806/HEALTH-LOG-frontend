@@ -5,12 +5,10 @@ export default {
   data: function () {
     setTimeout(this.indexAppointments, 1000);
     return {
-
       appointments: [],
       appointment: {},
       newAppointment: {},
       currentAppointment: {},
-
     };
   },
   created: function () {
@@ -20,27 +18,17 @@ export default {
 
     indexAppointments: function () {
       axios.get("/appointments.json").then((response) => {
-        console.log("appointments index", response);
         this.appointments = response.data;
-
       })
     },
     addAppointments: function (appointment) {
-
-      console.log(this.newAppointment)
-
       axios.post("/appointments.json", this.newAppointment).then((response) => {
-        console.log("appointments index", response);
         this.appointments.push(response.data);
-
       });
-
     },
-    deleteAppointments: function (theAppointment) {
-      console.log("deleting list..");
 
+    deleteAppointments: function (theAppointment) {
       axios.delete("/appointments/" + theAppointment.id + ".json").then(response => {
-        console.log(response.data)
       })
     },
     reloadPage() {
@@ -55,12 +43,11 @@ export default {
 
   <div class="appointments-index">
     <h1 class="main-title">APPOINTMENTS</h1>
-
-
+    <!-- Add appointments Start-->
     <div class="mt-6">
       <div class="row">
         <div class="col">
-          <p class="h3 text-success fw-bold">ADD Appointments :</p>
+          <p class="h3 text-success fw-bold">Add Appointments :</p>
           <p class="fst-italic"></p>
         </div>
       </div>
@@ -84,16 +71,16 @@ export default {
             <div class="mb-3">
               <select class="form-control" required="required" v-model="newAppointment.doctor_id">
                 <option disabled value="" selected>--select an option--</option>
-                <option value="13">Orthopedic</option>
-                <option value="14">Dermatology</option>
-                <option value="15">Allergy and immunology</option>
-                <option value="16">Family medecine</option>
-                <option value="17">Urology</option>
-                <option value="18">Pathology</option>
-                <option value="19">Psychiatry</option>
-                <option value="20">Surgery</option>
-                <option value="12">Neurology</option>
-                <option value="22">Anesthesiology</option>
+                <option value="1">Orthopedic</option>
+                <option value="2">Dermatology</option>
+                <option value="4">Allergy and immunology</option>
+                <option value="5">Family medecine</option>
+                <option value="6">Urology</option>
+                <option value="7">Pathology</option>
+                <option value="8">Psychiatry</option>
+                <option value="9">Surgery</option>
+                <option value="10">Neurology</option>
+                <option value="11">Anesthesiology</option>
               </select>
               <small class="text-danger"> Please select a doctor speciality from the list</small>
             </div>
@@ -102,7 +89,6 @@ export default {
               <button class="btn btn-success" id="edit-btn" v-on:click="addAppointments(); reloadPage()"><i
                   class=" fa fa-plus-circle"></i> CREATE
               </button>
-
             </div>
           </form>
         </div>
@@ -110,6 +96,8 @@ export default {
       <br>
       <br>
       <br>
+      <!-- Add appointments End-->
+      <!-- Upcoming appointments Start-->
       <div class="mt-6">
         <div class="row">
           <div class="col">
@@ -160,6 +148,7 @@ export default {
           </div>
         </div>
       </div>
+      <!-- Upcoming appointments End-->
     </div>
   </div>
 </template>
