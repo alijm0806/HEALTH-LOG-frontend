@@ -103,11 +103,11 @@ export default {
           </span>
           <span v-if="isLoggedIn" class="text">Logout</span>
         </router-link>
-
+        <!-- 
         <router-link to="/settings" class="button">
           <span class="material-icons">settings</span>
           <span class="text">Settings</span>
-        </router-link>
+        </router-link> -->
       </div>
     </aside>
     <div class="container">

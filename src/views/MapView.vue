@@ -21,8 +21,8 @@ export default {
       const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [-97.5569, 30.3408],
-        zoom: 13,
+        center: [-97.7431, 30.2672],
+        zoom: 11,
       });
       const geocoder = new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
