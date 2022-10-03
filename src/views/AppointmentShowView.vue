@@ -26,7 +26,7 @@ export default {
         // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [this.appointment.lon, this.appointment.lat],
-        zoom: 13
+        zoom: 12
       });
 
       // Create a default Marker and add it to the map.

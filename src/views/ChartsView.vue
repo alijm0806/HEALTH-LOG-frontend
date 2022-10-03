@@ -134,8 +134,9 @@ export default {
 <style>
 .chartBox {
   border-radius: 20px;
-  border: solid 3px rgba(255, 26, 104, 1);
+  border: solid 5px rgba(255, 26, 104, 1);
   background: #fff;
+  margin-top: 100px
 }
 
 text {

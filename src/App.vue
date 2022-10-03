@@ -28,7 +28,6 @@ export default {
 </script>
 
 <template>
-  <!-- Am I logged in? {{ isLoggedIn }} -->
   <div class="app">
 
     <aside :class="`${is_expanded ? 'is_expanded' : ''}`">
@@ -87,7 +86,7 @@ export default {
         </router-link>
         <router-link to="/contact" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">email</span>
-          <span v-if="isLoggedIn" class="text">Contact</span>
+          <span v-if="isLoggedIn" class="text">Contact Us</span>
         </router-link>
 
       </div>
@@ -297,14 +296,6 @@ footer {
   font-size: 0.875rem;
   color: var(--grey);
 }
-
-/* 
-h3,
-.text {
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-} */
-
 
 .is_expanded,
 .text {

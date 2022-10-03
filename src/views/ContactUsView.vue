@@ -65,13 +65,13 @@
               <div class="toolip">Facebook</div>
               <span><i class="fa-brands fa-facebook"></i></span>
             </div>
-            <div class="icon twitter">
-              <div class="toolip">Twitter</div>
-              <span><i class="fa-brands fa-twitter"></i></span>
-            </div>
             <div class="icon instagram">
               <div class="toolip">Instagram</div>
               <span><i class="fa-brands fa-instagram"></i></span>
+            </div>
+            <div class="icon twitter">
+              <div class="toolip">Twitter</div>
+              <span><i class="fa-brands fa-twitter"></i></span>
             </div>
             <div class="icon whatsapp">
               <div class="toolip">whatsapp</div>

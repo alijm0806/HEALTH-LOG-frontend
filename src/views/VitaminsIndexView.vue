@@ -107,6 +107,7 @@ export default {
               <div>
                 <h5 id="h5"><b>Function in the Body:
                     <br>
+                    <br>
                   </b>{{ vitamin.used_for }}
                 </h5>
               </div>

@@ -116,9 +116,12 @@ export default {
               <h2 class="card-title">{{ vitamin.name }}</h2>
               <p class="card-text">
               <div>
-                <h5 id="h5"><b>Deficiency Symptoms:
+                <h5 id="h5">
+                  <b>Deficiency Symptoms:
                     <br>
-                  </b>{{ vitamin.deficiency }}</h5>
+                    <br>
+                  </b>{{ vitamin.deficiency }}
+                </h5>
               </div>
               <br>
               </p>

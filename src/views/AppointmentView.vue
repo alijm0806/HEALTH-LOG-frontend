@@ -3,7 +3,6 @@ import axios from "axios";
 
 export default {
   data: function () {
-    setTimeout(this.indexAppointments, 1000);
     return {
       appointments: [],
       appointment: {},
