@@ -95,7 +95,6 @@ export default {
   margin-top: 10rem;
   overflow: hidden;
   scroll-behavior: unset;
-
 }
 
 
@@ -115,7 +114,8 @@ export default {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-#floatingInput {
+
+#floatingInput.form-control {
   width: 90%;
   max-width: 90%;
   border-radius: 25px;
