@@ -233,7 +233,7 @@ button {
 
 
 
-.text {
+.menu .text {
   color: white;
   transition: 0.2s ease-in-out;
   margin-left: 1.5rem
