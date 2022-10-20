@@ -10,7 +10,7 @@ export default {
       currentAppointment: {},
     };
   },
-  created: function () {
+  mounted: function () {
     this.indexAppointments()
   },
   methods: {
@@ -25,13 +25,13 @@ export default {
         this.appointments.push(response.data);
       });
     },
+    reloadPage() {
+      window.location.reload();
+    },
 
     deleteAppointments: function (theAppointment) {
       axios.delete("/appointments/" + theAppointment.id + ".json").then(response => {
       })
-    },
-    reloadPage() {
-      window.location.reload();
     },
   }
 }

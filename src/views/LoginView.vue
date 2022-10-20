@@ -116,8 +116,11 @@ export default {
 }
 
 #floatingInput {
+  width: 90%;
+  max-width: 90%;
   border-radius: 25px;
   border-color: #607d8b;
+  margin: 10px
 }
 
 .form-Bx {

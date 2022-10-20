@@ -402,10 +402,5 @@ export default {
   .contactForm {
     width: 100%;
   }
-
-
-
-
-
 }
 </style>

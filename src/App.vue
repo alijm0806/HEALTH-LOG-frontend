@@ -40,10 +40,8 @@ export default {
         </button>
       </div>
 
-
-      <h3></h3>
       <div class="menu">
-        <router-link to="/" class="button">
+        <router-link to="/" v-if="!isLoggedIn" class="button">
           <span v-if="!isLoggedIn" class="material-icons">
             login
           </span>
@@ -147,7 +145,7 @@ aside {
   flex-direction: column;
   background-color: var(--dark);
   color: var(--light);
-  width: calc(2rem + 30px);
+  width: calc(2rem + 35px);
   min-width: calc(2rem + 30px);
   overflow: hidden;
   height: 100vh;
@@ -238,6 +236,7 @@ button {
 .text {
   color: white;
   transition: 0.2s ease-in-out;
+  margin-left: 2px;
 }
 
 .text:hover {
@@ -278,10 +277,13 @@ button {
   transition: 0.2s ease-in-out;
 }
 
+aside .menu .router-link-exact-active {
+  background-color: var(--dark-alt);
+  border-right: 5px solid var(--primary);
+}
 
-.router-link-exact-active:hover,
-.router-link-exact-active:active {
-
+.button.router-link-exact-active:hover,
+.button.router-link-exact-active:active {
   border-right: 5px solid var(--primary);
 }
 
@@ -318,9 +320,9 @@ footer {
 }
 
 
-@media screen {
+@media (max-width: 768px) {
 
-  .container (min-width: 768px) {
+  .container {
     position: absolute;
     z-index: 99;
   }

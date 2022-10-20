@@ -54,14 +54,14 @@ export default {
           <p>Email: <input class="form-control" id="floatingInput" placeholder="name@example.com" type="email"
               v-model="newUserParams.email" /></p>
 
-          <p>Password: <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+          <p>Password: <input type="password" class="form-control" id="floatingInput" placeholder="Password"
               minlength="6" v-model="newUserParams.password" />
           </p>
 
           <p><small class="text-success"> Password must be at least 6 characters long</small></p>
 
           <p>Password Confirmation:
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password confirmation"
+            <input type="password" class="form-control" id="floatingInput" placeholder="Password confirmation"
               minlength="6" v-model="newUserParams.password_confirmation" />
           </p>
           <small class="text-success"> Password must be at least 6 characters long</small>
