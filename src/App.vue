@@ -236,7 +236,7 @@ button {
 .text {
   color: white;
   transition: 0.2s ease-in-out;
-  margin-left: 2px;
+  margin-left: 1.5rem
 }
 
 .text:hover {
