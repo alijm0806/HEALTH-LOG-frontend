@@ -279,12 +279,12 @@ button {
 
 aside .menu .router-link-exact-active {
   background-color: var(--dark-alt);
-  border-right: 5px solid var(--primary);
+  border-left: 5px solid var(--primary);
 }
 
 .button.router-link-exact-active:hover,
 .button.router-link-exact-active:active {
-  border-right: 5px solid var(--primary);
+  border-left: 5px solid var(--primary);
 }
 
 .flex {
