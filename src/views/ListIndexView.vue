@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import moment from 'moment'
+import Swal from 'sweetalert2'
 
 export default {
 
@@ -27,6 +28,8 @@ export default {
     },
     deleteList: function (thelist) {
       axios.delete("/lists_of_vitamins/" + thelist.id + ".json").then(response => {
+        Swal.fire('Removed', 'Vitamin successfully removed from your list.', 'error');
+        setTimeout(this.indexList, 1000);
       })
     },
     refreshList: function (currentList) {
@@ -39,9 +42,8 @@ export default {
         })
       }
       this.lists.sort(this.myComparator);
-    },
-    reloadPage() {
-      window.location.reload();
+      Swal.fire('Refreshed', 'Your list is ready for a new day.', 'success');
+      setTimeout(this.indexList, 1000);
     },
   }
 }
@@ -54,7 +56,7 @@ export default {
     <h1 class="main-title">My List</h1>
     <div>
       <div class="refresh">
-        <button class="btn btn-danger " v-on:click="refreshList(currentList); reloadPage()">
+        <button class="btn btn-danger " v-on:click="refreshList(currentList)">
           <i class="fa fa-refresh"></i>
         </button>
         <p id="refresh-p">Refresh for a New Day....</p>
@@ -71,25 +73,27 @@ export default {
                 </div>
                 <div class="col-sm-7 d-flex flex-column justify-content-center">
                   <ul class="list-group">
-                    <li class="list-group-item">Name: <span class="fw-bold">{{ list.vitamin.name}}</span>
+                    <li class="list-group-item">Name: <span class="fw-bold">{{ list.vitamin.name }}</span>
                     </li>
-                    <li :class="`${list.quantity !==null ? 'list-group-item' : 'warning-item' }`">
-                      Daily Quantity: <span class="fw-bold">{{ list.quantity}}</span>
+                    <li :class="`${list.quantity !== null ? 'list-group-item' : 'warning-item'}`">
+                      Daily Quantity: <span class="fw-bold">{{ list.quantity }}</span>
                     </li>
-                    <li class="list-group-item">Intakes Left: <span class="fw-bold">{{list.intake_quantity_left
-                    !==null
-                    ?
-                    list.intake_quantity_left : ''}}
+                    <li class="list-group-item">Intakes Left: <span class="fw-bold">{{ list.intake_quantity_left
+                        !== null
+                        ?
+                        list.intake_quantity_left : ''
+                    }}
                       </span>
                     </li>
-                    <li class="list-group-item">Last Intake was: <span class="fw-bold">{{list.intake_quantity !== 0 &&
-                    list.intake_quantity !==null ?
-                    moment(list.updated_at).fromNow() : ""}}
+                    <li class="list-group-item">Last Intake was: <span class="fw-bold">{{ list.intake_quantity !== 0 &&
+                        list.intake_quantity !== null ?
+                        moment(list.updated_at).fromNow() : ""
+                    }}
                       </span>
                     </li>
                   </ul>
                   <router-link :to="`/vitamins/mylist/${list.id}/edit`">
-                    <small v-if="list.quantity ==null" class="text-danger"><i
+                    <small v-if="list.quantity == null" class="text-danger"><i
                         class="fa fa-exclamation-triangle"></i>Please enter yourDaily quantity</small>
                   </router-link>
                 </div>
@@ -100,7 +104,7 @@ export default {
                   <a v-bind:href="`/vitamins/mylist/${list.id}/edit`" class="btn btn-primary my-1">
                     <i class="fa fa-pen"></i>
                   </a>
-                  <button class="btn btn-danger my-1" v-on:click="deleteList(list); reloadPage()">
+                  <button class="btn btn-danger my-1" v-on:click="deleteList(list)">
                     <i class="fa fa-trash"></i>
                   </button>
                 </div>

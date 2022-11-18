@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-
+import Swal from 'sweetalert2'
 
 export default {
   data: function () {
@@ -23,7 +23,8 @@ export default {
     },
     updateList: function (currentLists_of_vitamin) {
       axios.patch("/appointments/" + this.appointment.id + ".json", this.currentAppointment).then(response => {
-        this.$router.push("/Appointments");
+        Swal.fire('Updated', 'Appointment successfully updated.', 'warning');
+        setTimeout(this.showAppointment, 500);
       })
     },
 
@@ -44,15 +45,15 @@ export default {
                 <ul class="list-group">
                   <div class="mb-2">
                     <input type="text" class="form-control" placeholder="Address"
-                      v-model="currentAppointment.address">{{this.appointment.address}}
+                      v-model="currentAppointment.address">{{ this.appointment.address }}
                   </div>
                   <div class="mb-2">
                     <input type="datetime-local" class="form-control" placeholder="Date"
-                      v-model="currentAppointment.date">{{this.appointment.date}}
+                      v-model="currentAppointment.date">{{ this.appointment.date }}
                   </div>
                   <div class="mb-2">
                     <input type="text" class="form-control" placeholder="Phone Number" required="required"
-                      maxlength="10" v-model="currentAppointment.phone_number">{{this.appointment.phone_number}}
+                      maxlength="10" v-model="currentAppointment.phone_number">{{ this.appointment.phone_number }}
                   </div>
                   <div class="mb-2">
                     <select class="form-control" v-model="currentAppointment.doctor_id">
@@ -68,7 +69,7 @@ export default {
                       <option value="10">Neurology</option>
                       <option value="11">Anesthesiology</option>
                     </select>
-                    {{this.appointment.doctor.speciality}}
+                    {{ this.appointment.doctor.speciality }}
                   </div>
                 </ul>
               </div>

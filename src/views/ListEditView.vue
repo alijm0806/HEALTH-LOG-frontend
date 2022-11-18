@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export default {
   data: function () {
@@ -38,7 +39,8 @@ export default {
     updateList: function (currentLists_of_vitamin) {
       currentLists_of_vitamin.intake_quantity_left = currentLists_of_vitamin.quantity
       axios.patch("/lists_of_vitamins/" + this.lists_of_vitamin.id + ".json", this.currentLists_of_vitamin).then(response => {
-        this.$router.push("/vitamins/mylist");
+        // this.$router.push("/vitamins/mylist");
+        Swal.fire('Updated', 'Daily quantity successfully updated.', 'warning');
       })
     },
   }
@@ -48,7 +50,7 @@ export default {
 <template>
 
   <div class="list-show">
-    <h1 class="main-title">{{lists_of_vitamin.vitamin.name}}</h1>
+    <h1 class="main-title">{{ lists_of_vitamin.vitamin.name }}</h1>
     <div class="container mt-3">
       <div class="row" id="edit-row">
         <div class="col-lg-6 ">
@@ -58,7 +60,8 @@ export default {
                 <ul class="list-group">
                   <p class="edit-p">Select your daily intakes:</p>
                   Vitamin Name: <li class="list-group-item"><span class="fw-bold">{{
-                  lists_of_vitamin.vitamin.name}}</span>
+                      lists_of_vitamin.vitamin.name
+                  }}</span>
                   </li>
                   Daily Quantity: <li class="list-group-item"><label class="mr-sm-2 sr-only"
                       for="inlineFormCustomSelect"></label>

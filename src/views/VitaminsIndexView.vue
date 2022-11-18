@@ -6,9 +6,11 @@ localStorage.setItem("isHidden", isHidden.value)
 
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export default {
   data: function () {
+
     return {
       lists_of_vitamins: [],
       vitamins: [],
@@ -26,8 +28,8 @@ export default {
     isHidden() {
       localStorage.setItem('isHidden', JSON.stringify(this.isHidden))
     }
-  }
-  ,
+  },
+
   mounted: function () {
     this.indexVitamins();
     this.indexList();
@@ -62,10 +64,10 @@ export default {
       this.newList.vitamin_id = vitamin.id
       axios.post("/lists_of_vitamins.json", this.newList).then((response) => {
         this.lists_of_vitamins.push(response.data);
+        Swal.fire('Added', 'Vitamin successfully added to your list.', 'success');
+        setTimeout(this.indexList, 500);
+
       });
-    },
-    reloadPage() {
-      window.location.reload();
     },
   }
 };
@@ -115,10 +117,10 @@ export default {
               <div class="row ">
                 <div class="col-sm-6">
                   <div class="stats">
-                    <h4>Frequency: <span>{{ (((vitamin.users).length / vitamin.stats)*100).toFixed(2)}} %</span>
+                    <h4>Frequency: <span>{{ (((vitamin.users).length / vitamin.stats) * 100).toFixed(2) }} %</span>
                     </h4>
                     <div class="the-progress">
-                      <span :style="{'width':`${parseInt((vitamin.users).length / vitamin.stats * 100)}%`}"></span>
+                      <span :style="{ 'width': `${parseInt((vitamin.users).length / vitamin.stats * 100)}%` }"></span>
                     </div>
                     <middle class="text-primary"> % of users who add this vitamin </middle>
                   </div>
@@ -126,14 +128,18 @@ export default {
 
                 <div class="col-sm-6">
                   <button v-if="!vitamin_ids.includes(vitamin.id)"
-                    :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
-                    v-on:click=" addLists(vitamin); reloadPage()">Add To List</button>
+                    :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`" v-on:click="addLists(vitamin)">Add To
+                    List</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <br>
+      <br>
+      <br>
+      <br>
     </div>
     <!-- Vitamins End -->
 

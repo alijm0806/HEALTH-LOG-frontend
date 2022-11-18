@@ -23,6 +23,7 @@
     "mapbox-gl": "^2.10.0",
     "moment": "^2.29.4",
     "smtpjs": "^0.0.1",
+    "sweetalert2": "^11.0.11",
     "vue": "^3.2.39",
     "vue-flatpickr-component": "^9.0.6",
     "vue-moment": "^4.1.0",

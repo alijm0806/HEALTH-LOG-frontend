@@ -1,8 +1,17 @@
+<script setup>
+import { ref } from 'vue';
+const is_expanded = "false";
+// localStorage.setItem("is_expanded", is_expanded.value)
+</script >
+
 <script>
 import axios from "axios";
+import Swal from 'sweetalert2'
 
 export default {
   data: function () {
+    setTimeout(this.indexAppointments, 1000);
+
     return {
       appointments: [],
       appointment: {},
@@ -10,48 +19,49 @@ export default {
       currentAppointment: {},
     };
   },
+
   mounted: function () {
-    this.indexAppointments()
+    this.indexAppointments();
   },
   methods: {
-
     indexAppointments: function () {
       axios.get("/appointments.json").then((response) => {
         this.appointments = response.data;
       })
     },
     addAppointments: function (appointment) {
+      Swal.fire('Added', 'Appointment successfully added.', 'success');
       axios.post("/appointments.json", this.newAppointment).then((response) => {
         this.appointments.push(response.data);
+        setTimeout(this.indexAppointments, 1000);
       });
-    },
-    reloadPage() {
-      window.location.reload();
     },
 
     deleteAppointments: function (theAppointment) {
       axios.delete("/appointments/" + theAppointment.id + ".json").then(response => {
+        Swal.fire('Removed', 'Appointment successfully removed.', 'error');
+        setTimeout(this.indexAppointments, 1000);
       })
     },
   }
 }
 </script>
 
-
 <template>
 
   <div class="appointments-index">
     <h1 class="main-title">APPOINTMENTS</h1>
     <!-- Add appointments Start-->
-    <div class="mt-6">
-      <div class="row">
-        <div class="col">
-          <p class="h3 text-success fw-bold">Add Appointments :</p>
-          <p class="fst-italic"></p>
+    <div>
+      <div class="mt-6">
+        <div class="row">
+          <div class="col">
+            <p class="h3 text-success fw-bold">Add Appointments :</p>
+            <p class="fst-italic"></p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="container mt-6">
+
       <div class="row">
         <div class="col-md-4">
           <form>
@@ -81,12 +91,13 @@ export default {
                 <option value="10">Neurology</option>
                 <option value="11">Anesthesiology</option>
               </select>
-              <small class="text-danger"> Please select a doctor speciality from the list</small>
+              <small class="text-danger"> *Please select a doctor speciality from the list</small>
             </div>
 
             <div class="mb-2">
-              <button class="btn btn-success" id="edit-btn" v-on:click="addAppointments(); reloadPage()"><i
-                  class=" fa fa-plus-circle"></i> CREATE
+              <button class="btn btn-success" id="edit-btn" v-on:click="addAppointments(appointment)">
+                <i class=" fa fa-plus-circle"></i>
+                CREATE
               </button>
             </div>
           </form>
@@ -117,16 +128,16 @@ export default {
                   </div>
                   <div class="col-sm-7 d-flex flex-column justify-content-center">
                     <ul class="list-group">
-                      <li class="list-group-item">Address: <span class="fw-bold">{{appointment.address}}</span>
+                      <li class="list-group-item">Address: <span class="fw-bold">{{ appointment.address }}</span>
                       </li>
                       <li class="list-group-item">
-                        Date: <span class="fw-bold">{{appointment.date}}</span>
+                        Date: <span class="fw-bold">{{ appointment.date }}</span>
                       </li>
-                      <li class="list-group-item">Speciality:<span class="fw-bold">
-                          {{appointment.doctor.speciality}}</span>
+                      <li class="list-group-item">Speciality: <span class="fw-bold">
+                          {{ appointment.doctor.speciality }}</span>
                       </li>
                       <li class="list-group-item">
-                        Phone Number: <span class="fw-bold">{{appointment.phone_number}}</span>
+                        Phone Number: <span class="fw-bold">{{ appointment.phone_number }}</span>
                       </li>
                     </ul>
                   </div>
@@ -137,7 +148,7 @@ export default {
                     <a v-bind:href="`/Appointments/${appointment.id}/edit`" class="btn btn-primary my-1">
                       <i class="fa fa-pen"></i>
                     </a>
-                    <button class="btn btn-danger my-1" v-on:click="deleteAppointments(appointment); reloadPage()">
+                    <button class="btn btn-danger my-1" v-on:click="deleteAppointments(appointment)">
                       <i class="fa fa-trash"></i>
                     </button>
                   </div>
@@ -147,8 +158,9 @@ export default {
           </div>
         </div>
       </div>
-      <!-- Upcoming appointments End-->
     </div>
+    <!-- Upcoming appointments End-->
+
   </div>
 </template>
 

@@ -1,9 +1,10 @@
 <script>
 import axios from "axios";
-
+import Swal from 'sweetalert2'
 
 export default {
   data: function () {
+    // setTimeout(this.showList, 1000);
     return {
       date: new Date(),
       lists_of_vitamin: [],
@@ -22,20 +23,19 @@ export default {
       intake_quantity: 0
     };
   },
-  watch: {
-    lists() {
-      localStorage.setItem('lists', JSON.stringify(this.lists))
-    }
+  computed: function () {
+    this.showList();
   },
   created: function () {
     this.showList();
   },
   methods: {
-    myComparator(a, b) {
+    myComparator: function (a, b) {
       return parseInt(a.id, 10) - parseInt(b.id, 10);
     },
 
     showList: function () {
+      this.nLists = [];
       axios.get("/lists_of_vitamins/" + this.$route.params.id + ".json").then((response) => {
         this.lists = response.data;
         for (var i = 0; i < this.lists.intake_quantity_left; i++) {
@@ -45,12 +45,14 @@ export default {
       })
     },
 
-    updateList: function (currentList) {
+    updateList(currentList) {
       this.currentList.intake_quantity = (this.lists.intake_quantity + 1);
       this.currentList.intake_quantity_left = (this.lists.intake_quantity_left - 1);
       axios.patch("/lists_of_vitamins/" + this.lists.id + ".json", this.currentList).then(response => {
-        this.$router.push("/vitamins/mylist");
+        Swal.fire('Taken', 'Great! another intake for today.', 'success');
+        setTimeout(this.showList, 500);
       })
+
     },
   }
 }
@@ -59,7 +61,7 @@ export default {
 <template>
   <div>
     <div class="list-show">
-      <h1 class="main-title">{{lists.vitamin.name}}</h1>
+      <h1 class="main-title">{{ lists.vitamin.name }}</h1>
       <div class="mt-6">
         <div class="row">
           <div class="col">
@@ -68,7 +70,7 @@ export default {
           </div>
         </div>
       </div>
-      <div v-for="list in nLists" v-bind:key="list.id" :class="`${list.id % 2==0 ? 'odd-list' : 'even-list' }`">
+      <div v-for="list in nLists" v-bind:key="list.id" :class="`${list.id % 2 == 0 ? 'odd-list' : 'even-list'}`">
 
         <div class="list-1">
           <div class="form-check">
@@ -81,7 +83,7 @@ export default {
           {{ list.vitamin.name }}
         </div>
         <div class="list-4">
-          Quantity: {{ list.quantity }}
+          Daily Quantity: {{ list.quantity }}
         </div>
         <div class="list-5">
           Intakes Left: {{ list.intake_quantity_left }}
@@ -221,5 +223,6 @@ export default {
 .btn-info {
   top: 0;
   display: absolute;
+  margin-top: 30px;
 }
 </style>
