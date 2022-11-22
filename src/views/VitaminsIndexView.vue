@@ -109,7 +109,6 @@ export default {
               <div>
                 <h5 id="h5"><b>Function in the Body:
                     <br>
-                    <br>
                   </b>{{ vitamin.used_for }}
                 </h5>
               </div>
@@ -206,8 +205,8 @@ export default {
 
 .col-sm-6 {
   display: absolute;
-  min-height: 172px;
-  max-height: 172px;
+  max-height: 100px;
+  height: 100px;
   position: relative;
 }
 
@@ -342,8 +341,8 @@ form .search {
 #h5 {
 
   font-size: 25px;
-  margin-top: 20px;
-
+  max-height: 120px;
+  margin-bottom: 30px;
 }
 
 .button-vitamins {
@@ -400,7 +399,7 @@ input {
 
 .card-mb-3 {
   margin-left: 0.5rem;
-  background-color: rgb(204, 204, 204, 0.65);
+  background-color: rgb(204, 204, 204, 0.8);
 }
 
 
@@ -438,6 +437,7 @@ h4 {
   padding: 3px 5px;
   border-radius: 4px;
   color: rgb(0, 115, 255);
+  background: rgb(204, 204, 204);
 }
 
 .the-progress {
