@@ -1,12 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 const is_expanded = "false";
-// localStorage.setItem("is_expanded", is_expanded.value)
+const now = moment().format('YYYY-M-DThh:mm');
 </script >
 
 <script>
 import axios from "axios";
 import Swal from 'sweetalert2'
+import moment from 'moment'
 
 export default {
   data: function () {
@@ -27,6 +28,7 @@ export default {
     indexAppointments: function () {
       axios.get("/appointments.json").then((response) => {
         this.appointments = response.data;
+        console.log(this.now)
       })
     },
     addAppointments: function (appointment) {
@@ -71,6 +73,7 @@ export default {
             </div>
             <div class="mb-3">
               <input type="datetime-local" class="form-control" placeholder="Date" required="required"
+                :min="`${moment().format('YYYY-M-DThh:mm')}`" id=" meeting-time" name="meeting-time"
                 v-model="newAppointment.date">
             </div>
             <div class="mb-3">
