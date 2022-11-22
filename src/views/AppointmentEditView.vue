@@ -48,21 +48,21 @@ export default {
               <div class="edit-row ">
                 <ul class="list-group">
                   <div class="mb-2">
-                    <input type="text" class="form-control" placeholder="Address"
+                    <input type="text" class="form-control" :placeholder="`${appointment.address}`"
                       v-model="currentAppointment.address">{{ this.appointment.address }}
                   </div>
                   <div class="mb-2">
-                    <input type="datetime-local" class="form-control" placeholder="Date" :min="`${current}`"
-                      v-model="currentAppointment.date">{{
-                          this.appointment.date
-                      }}
+                    <input type="datetime-local" class="form-control" :placeholder="`${current}`" :min="`${current}`"
+                      v-model="currentAppointment.date">
+                    {{ this.appointment.date }}
                   </div>
                   <div class="mb-2">
-                    <input type="text" class="form-control" placeholder="Phone Number" required="required"
-                      maxlength="10" v-model="currentAppointment.phone_number">{{ this.appointment.phone_number }}
+                    <input type="text" class="form-control" :placeholder="`${appointment.phone_number}`"
+                      required="required" maxlength="10" v-model="currentAppointment.phone_number">
+                    {{ this.appointment.phone_number }}
                   </div>
                   <div class="mb-2">
-                    <select class="form-control" v-model="currentAppointment.doctor_id">
+                    <select class="form-select" v-model="currentAppointment.doctor_id">
                       <option disabled value="" selected>--select an option--</option>
                       <option value="1">Orthopedic</option>
                       <option value="2">Dermatology</option>
@@ -114,7 +114,7 @@ export default {
   border-radius: 50%;
   display: flex;
   justify-content: center;
-  margin: auto
+  margin-bottom: 100px
 }
 
 #edit-row {
@@ -141,6 +141,10 @@ select {
 }
 
 .mb-2 .form-control {
+  height: 50px
+}
+
+.mb-2 .form-select {
   height: 50px
 }
 

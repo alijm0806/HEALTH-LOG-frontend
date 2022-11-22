@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-const is_expanded = "false";
+const current = moment().format('YYYY-M-DThh:mm');
+
 </script >
 
 <script>
@@ -70,15 +70,15 @@ export default {
                 v-model="newAppointment.address">
             </div>
             <div class="mb-3">
-              <input type="datetime-local" class="form-control" placeholder="Date" required="required"
-                :min="`${moment().format('YYYY-M-DThh:mm')}`" v-model="newAppointment.date">
+              <input type="datetime-local" class="form-control" placeholder="" :min="`${current}`"
+                v-model="newAppointment.date">
             </div>
             <div class="mb-3">
               <input type="text" class="form-control" placeholder="Phone Number" required="required" maxlength="10"
                 v-model="newAppointment.phone_number">
             </div>
             <div class="mb-3">
-              <select class="form-control" required="required" v-model="newAppointment.doctor_id">
+              <select class="form-select" required="required" v-model="newAppointment.doctor_id">
                 <option disabled value="" selected>--select an option--</option>
                 <option value="1">Orthopedic</option>
                 <option value="2">Dermatology</option>
@@ -166,6 +166,11 @@ export default {
 
 <style>
 .mb-3 .form-control {
+  width: 470px;
+  height: 55px;
+}
+
+.mb-3 .form-select {
   width: 470px;
   height: 55px;
 }
