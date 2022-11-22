@@ -1,5 +1,9 @@
+<script setup>
+const current = moment().format('YYYY-M-DThh:mm');
+</script>
 <script>
 import axios from "axios";
+import moment from 'moment';
 import Swal from 'sweetalert2'
 
 export default {
@@ -48,8 +52,10 @@ export default {
                       v-model="currentAppointment.address">{{ this.appointment.address }}
                   </div>
                   <div class="mb-2">
-                    <input type="datetime-local" class="form-control" placeholder="Date"
-                      v-model="currentAppointment.date">{{ this.appointment.date }}
+                    <input type="datetime-local" class="form-control" placeholder="Date" :min="`${current}`"
+                      v-model="currentAppointment.date">{{
+                          this.appointment.date
+                      }}
                   </div>
                   <div class="mb-2">
                     <input type="text" class="form-control" placeholder="Phone Number" required="required"

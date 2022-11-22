@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 const is_expanded = "false";
-const now = moment().format('YYYY-M-DThh:mm');
 </script >
 
 <script>
@@ -28,7 +27,6 @@ export default {
     indexAppointments: function () {
       axios.get("/appointments.json").then((response) => {
         this.appointments = response.data;
-        console.log(this.now)
       })
     },
     addAppointments: function (appointment) {
@@ -73,8 +71,7 @@ export default {
             </div>
             <div class="mb-3">
               <input type="datetime-local" class="form-control" placeholder="Date" required="required"
-                :min="`${moment().format('YYYY-M-DThh:mm')}`" id=" meeting-time" name="meeting-time"
-                v-model="newAppointment.date">
+                :min="`${moment().format('YYYY-M-DThh:mm')}`" v-model="newAppointment.date">
             </div>
             <div class="mb-3">
               <input type="text" class="form-control" placeholder="Phone Number" required="required" maxlength="10"
@@ -161,9 +158,8 @@ export default {
           </div>
         </div>
       </div>
+      <!-- Upcoming appointments End-->
     </div>
-    <!-- Upcoming appointments End-->
-
   </div>
 </template>
 
