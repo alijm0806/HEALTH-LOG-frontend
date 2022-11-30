@@ -129,6 +129,8 @@ export default {
                   <button v-if="!vitamin_ids.includes(vitamin.id)"
                     :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`" v-on:click="addLists(vitamin)">Add To
                     List</button>
+                  <button v-if="vitamin_ids.includes(vitamin.id)" class="button-vitamins-remove"
+                    v-on:click="addLists(vitamin)"> <i class="fa fa-check-square"></i></button>
                 </div>
               </div>
             </div>
@@ -343,6 +345,34 @@ form .search {
   font-size: 25px;
   max-height: 120px;
   margin-bottom: 30px;
+}
+
+.button-vitamins-remove {
+  appearance: none;
+  outline: none;
+  background: none;
+  position: absolute;
+  padding: 0.5rem 1rem;
+  background: green;
+  background-size: 200%;
+  color: white;
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: 0.4s;
+  margin-right: 3rem;
+  margin-bottom: 0.4rem;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+}
+
+.button-vitamins-remove:hover {
+  cursor: default;
+}
+
+.button-vitamins-remove i {
+  font-size: 30px;
 }
 
 .button-vitamins {
