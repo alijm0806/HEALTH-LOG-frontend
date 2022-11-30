@@ -27,12 +27,13 @@ export default {
     indexAppointments: function () {
       axios.get("/appointments.json").then((response) => {
         this.appointments = response.data;
+        this.newAppointment = {};
       })
     },
     addAppointments: function (appointment) {
-      Swal.fire('Added', 'Appointment successfully added.', 'success');
       axios.post("/appointments.json", this.newAppointment).then((response) => {
         this.appointments.push(response.data);
+        Swal.fire('Added', 'Appointment successfully added.', 'success');
         setTimeout(this.indexAppointments, 1000);
       });
     },
@@ -64,43 +65,41 @@ export default {
 
       <div class="row">
         <div class="col-md-4">
-          <form>
-            <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Address" required="required"
-                v-model="newAppointment.address">
-            </div>
-            <div class="mb-3">
-              <input type="datetime-local" class="form-control" placeholder="" :min="`${current}`"
-                v-model="newAppointment.date">
-            </div>
-            <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Phone Number" required="required" maxlength="10"
-                v-model="newAppointment.phone_number">
-            </div>
-            <div class="mb-3">
-              <select class="form-select" required="required" v-model="newAppointment.doctor_id">
-                <option disabled value="" selected>--select an option--</option>
-                <option value="1">Orthopedic</option>
-                <option value="2">Dermatology</option>
-                <option value="4">Allergy and immunology</option>
-                <option value="5">Family medecine</option>
-                <option value="6">Urology</option>
-                <option value="7">Pathology</option>
-                <option value="8">Psychiatry</option>
-                <option value="9">Surgery</option>
-                <option value="10">Neurology</option>
-                <option value="11">Anesthesiology</option>
-              </select>
-              <small class="text-danger"> *Please select a doctor speciality from the list</small>
-            </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Address" required="required"
+              v-model="newAppointment.address">
+          </div>
+          <div class="mb-3">
+            <input type="datetime-local" class="form-control" placeholder="" :min="`${current}`"
+              v-model="newAppointment.date">
+          </div>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Phone Number" required="required" maxlength="10"
+              v-model="newAppointment.phone_number">
+          </div>
+          <div class="mb-3">
+            <select class="form-select" required="required" v-model="newAppointment.doctor_id">
+              <option disabled value="" selected>--select an option--</option>
+              <option value="1">Orthopedic</option>
+              <option value="2">Dermatology</option>
+              <option value="4">Allergy and immunology</option>
+              <option value="5">Family medecine</option>
+              <option value="6">Urology</option>
+              <option value="7">Pathology</option>
+              <option value="8">Psychiatry</option>
+              <option value="9">Surgery</option>
+              <option value="10">Neurology</option>
+              <option value="11">Anesthesiology</option>
+            </select>
+            <small class="text-danger"> *Please select a doctor speciality from the list</small>
+          </div>
 
-            <div class="mb-2">
-              <button class="btn btn-success" id="edit-btn" v-on:click="addAppointments(appointment)">
-                <i class=" fa fa-plus-circle"></i>
-                CREATE
-              </button>
-            </div>
-          </form>
+          <div class="mb-2">
+            <button class="btn btn-success" id="edit-btn" v-on:click="addAppointments(appointment)">
+              <i class=" fa fa-plus-circle"></i>
+              CREATE
+            </button>
+          </div>
         </div>
       </div>
       <br>
