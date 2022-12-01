@@ -137,6 +137,8 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 
@@ -153,8 +155,6 @@ aside {
   transition: 0.2s ease-in-out;
   z-index: 99;
 }
-
-
 
 .menu-toggle {
   transition: 0.2s ease-in-out;
@@ -307,7 +307,7 @@ footer {
 
 .container {
   position: sticky;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 100vh;
   scroll-behavior: smooth;
   margin-top: 50px
