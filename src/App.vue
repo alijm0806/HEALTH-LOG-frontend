@@ -51,7 +51,6 @@ export default {
         <router-link to="/home" v-if="isLoggedIn" class="button">
           <span v-if="isLoggedIn" class="material-icons">home</span>
           <span v-if="isLoggedIn" class="text">Home</span>
-
         </router-link>
 
         <router-link to="/vitamins" v-if="isLoggedIn" class="button">
@@ -96,11 +95,6 @@ export default {
           </span>
           <span v-if="isLoggedIn" class="text">Logout</span>
         </router-link>
-        <!-- 
-        <router-link to="/settings" class="button">
-          <span class="material-icons">settings</span>
-          <span class="text">Settings</span>
-        </router-link> -->
       </div>
     </aside>
     <div class="container">
@@ -258,7 +252,6 @@ button {
 .is_expanded,
 .material-icons {
   margin-right: 1rem;
-
 }
 
 
@@ -271,7 +264,7 @@ button {
 
 
 .material-icons {
-
+  margin-bottom: 0.5rem;
   font-size: 2rem;
   color: var(--primary);
   transition: 0.2s ease-in-out;
