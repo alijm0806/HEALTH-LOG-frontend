@@ -378,10 +378,6 @@ form .search {
   border-radius: 50%;
 }
 
-.button-vitamins-remove:hover {
-  /* cursor: default; */
-}
-
 .button-vitamins-remove i {
   font-size: 30px;
 }
