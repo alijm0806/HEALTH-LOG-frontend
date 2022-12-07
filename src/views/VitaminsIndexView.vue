@@ -54,7 +54,7 @@ export default {
     indexList: function () {
       axios.get("/lists_of_vitamins.json").then((response) => {
         this.lists_of_vitamins = response.data;
-
+        this.vitamin_ids = [];
         for (var i = 0; i < this.lists_of_vitamins.length; i++) {
           this.vitamin_ids.push(this.lists_of_vitamins[i].vitamin_id)
         }
@@ -66,7 +66,17 @@ export default {
         this.lists_of_vitamins.push(response.data);
         Swal.fire('Added', 'Vitamin successfully added to your list.', 'success');
         setTimeout(this.indexList, 500);
+        setTimeout(this.indexVitamins, 500);
 
+      });
+    },
+    removeList: function (vitamin) {
+      const list_id = this.lists_of_vitamins.filter(listVit => listVit.vitamin_id === vitamin.id)
+
+      axios.delete("/lists_of_vitamins/" + list_id[0].id + ".json").then((response) => {
+        Swal.fire('Removed', 'Vitamin successfully removed from your list.', 'error');
+        setTimeout(this.indexList, 500);
+        setTimeout(this.indexVitamins, 500);
       });
     },
   }
@@ -129,8 +139,9 @@ export default {
                   <button v-if="!vitamin_ids.includes(vitamin.id)"
                     :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`" v-on:click="addLists(vitamin)">Add To
                     List</button>
-                  <button v-if="vitamin_ids.includes(vitamin.id)" class="button-vitamins-remove"
-                    v-on:click="addLists(vitamin)"> <i class="fa fa-check-square"></i></button>
+                  <button v-if="vitamin_ids.includes(vitamin.id)"
+                    :class="`${!isHidden ? 'button-vitamins-remove' : 'button-vitamins'}`"
+                    v-on:click="removeList(vitamin); indexList()"> <i class="fa fa-trash"></i></button>
                 </div>
               </div>
             </div>
@@ -353,7 +364,7 @@ form .search {
   background: none;
   position: absolute;
   padding: 0.5rem 1rem;
-  background: green;
+  background: red;
   background-size: 200%;
   color: white;
   font-size: 1.125rem;
@@ -368,7 +379,7 @@ form .search {
 }
 
 .button-vitamins-remove:hover {
-  cursor: default;
+  /* cursor: default; */
 }
 
 .button-vitamins-remove i {
