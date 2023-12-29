@@ -153,7 +153,6 @@ aside {
 .menu-toggle {
   transition: 0.2s ease-in-out;
   margin: 0px -20px 0px 0px;
-
 }
 
 
@@ -316,8 +315,18 @@ footer {
 @media (max-width: 768px) {
 
   .container {
-    position: absolute;
+    position: relative;
     z-index: 99;
+  }
+
+  .is_expanded,
+  .menu-toggle {
+    width: calc(2rem + 45px);
+  }
+
+  .menu-toggle {
+    opacity: 0;
+    cursor: none;
   }
 }
 

@@ -85,7 +85,6 @@ export default {
 
 </script> 
 <template>
-
   <div class="vitamins-recommendations">
     <!-- Title Start -->
     <h1 class="main-title">SYMPTOMS</h1>
@@ -117,9 +116,10 @@ export default {
               <p class="card-text">
               <div>
                 <h5 id="h5">
+                  <br>
                   <b>Deficiency Symptoms:
                     <br>
-                    <br>
+
                   </b>{{ vitamin.deficiency }}
                 </h5>
               </div>
@@ -135,7 +135,6 @@ export default {
       <br>
     </div>
   </div>
-
 </template>
   
 <style>

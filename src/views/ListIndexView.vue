@@ -51,7 +51,6 @@ export default {
 </script>
   
 <template>
-
   <div class="lists-index">
     <h1 class="main-title">My List</h1>
     <div>
@@ -79,15 +78,15 @@ export default {
                       Daily Quantity: <span class="fw-bold">{{ list.quantity }}</span>
                     </li>
                     <li class="list-group-item">Intakes Left: <span class="fw-bold">{{ list.intake_quantity_left
-                        !== null
-                        ?
-                        list.intake_quantity_left : ''
+                      !== null
+                      ?
+                      list.intake_quantity_left : ''
                     }}
                       </span>
                     </li>
                     <li class="list-group-item">Last Intake was: <span class="fw-bold">{{ list.intake_quantity !== 0 &&
-                        list.intake_quantity !== null ?
-                        moment(list.updated_at).fromNow() : ""
+                      list.intake_quantity !== null ?
+                      moment(list.updated_at).fromNow() : ""
                     }}
                       </span>
                     </li>
@@ -97,14 +96,14 @@ export default {
                         class="fa fa-exclamation-triangle"></i>Please enter yourDaily quantity</small>
                   </router-link>
                 </div>
-                <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
-                  <a v-bind:href="`/vitamins/mylist/${list.id}`" class="btn btn-warning my-1">
+                <div class="col-sm-1 d-flex flexmd-row flex-lg-column justify-content-center align-items-center">
+                  <a v-bind:href="`/vitamins/mylist/${list.id}`" class="btn btn-warning m-1">
                     <i class="fa fa-eye"></i>
                   </a>
-                  <a v-bind:href="`/vitamins/mylist/${list.id}/edit`" class="btn btn-primary my-1">
+                  <a v-bind:href="`/vitamins/mylist/${list.id}/edit`" class="btn btn-primary m-1">
                     <i class="fa fa-pen"></i>
                   </a>
-                  <button class="btn btn-danger my-1" v-on:click="deleteList(list)">
+                  <button class="btn btn-danger m-1" v-on:click="deleteList(list)">
                     <i class="fa fa-trash"></i>
                   </button>
                 </div>

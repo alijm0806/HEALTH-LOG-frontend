@@ -34,13 +34,11 @@ export default {
 </script>
   
 <template>
-
-
   <div class="login-signup">
 
     <div class="card border-info mb-3">
       <div class="form-Bx">Login</div>
-      <div class="card-body-login">
+      <div class="card-body-login m-3">
         <h5 class="card-title"></h5>
         <p class="card-text">
         <form v-on:submit.prevent="submit()">
@@ -81,9 +79,6 @@ export default {
 
 
   </div>
-
-
-
 </template>
   
 <style >
@@ -95,6 +90,7 @@ export default {
   margin-top: 10rem;
   overflow: hidden;
   scroll-behavior: unset;
+  width: 100%;
 }
 
 
@@ -107,10 +103,11 @@ export default {
   justify-content: center;
   align-items: center;
   border: none;
-  min-width: fit-content;
-  width: 60%;
-  height: 90%;
-  border-radius: 40px;
+  max-width: fit-content;
+  width: 100%;
+  height: 95%;
+  border-end-end-radius: 50px;
+  border-start-start-radius: 50px;
   background-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -120,7 +117,7 @@ export default {
   max-width: 90%;
   border-radius: 25px;
   border-color: #607d8b;
-  margin: 10px
+  margin: 1rem
 }
 
 .form-Bx {
@@ -130,7 +127,9 @@ export default {
   border-bottom: 4px solid #ff4584;
   letter-spacing: 0.5rem;
   padding-top: 20px;
-
+  width: 90%;
+  max-width: 90%;
+  margin-right: 10px;
 }
 
 #errors {

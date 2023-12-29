@@ -25,13 +25,12 @@ export default {
 </script>
   
 <template>
-
   <div class="login-signup">
 
 
     <div class="card border-info mb-3">
       <div class="form-Bx">Signup</div>
-      <div class="card-body-login">
+      <div class="card-body-login m-3">
         <h5 class="card-title"></h5>
         <p class="card-text">
         <form v-on:submit.prevent="submit()">
@@ -54,8 +53,8 @@ export default {
           <p>Email: <input class="form-control" id="floatingInput" placeholder="name@example.com" type="email"
               v-model="newUserParams.email" /></p>
 
-          <p>Password: <input type="password" class="form-control" id="floatingInput" placeholder="Password"
-              minlength="6" v-model="newUserParams.password" />
+          <p>Password: <input type="password" class="form-control" id="floatingInput" placeholder="Password" minlength="6"
+              v-model="newUserParams.password" />
           </p>
 
           <p><small class="text-success"> Password must be at least 6 characters long</small></p>
@@ -82,8 +81,6 @@ export default {
   position: relative;
   width: 100%;
   height: 70%;
-
-
 }
 
 .card.border-info {
@@ -111,7 +108,6 @@ export default {
   color: #607d8b;
   border-bottom: 4px solid #ff4584;
   letter-spacing: 0.5rem;
-
 }
 
 #floatingPassword {

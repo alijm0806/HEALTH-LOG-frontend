@@ -84,7 +84,6 @@ export default {
 
 </script> 
 <template>
-
   <div class="vitamins-index">
     <!-- Title Start -->
     <h1 class="main-title">VITAMINS</h1>
@@ -118,7 +117,6 @@ export default {
 
               <div>
                 <h5 id="h5"><b>Function in the Body:
-                    <br>
                   </b>{{ vitamin.used_for }}
                 </h5>
               </div>
@@ -136,9 +134,8 @@ export default {
                 </div>
 
                 <div class="col-sm-6">
-                  <button v-if="!vitamin_ids.includes(vitamin.id)"
-                    :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`" v-on:click="addLists(vitamin)">Add To
-                    List</button>
+                  <button v-if="!vitamin_ids.includes(vitamin.id)" :class="`${isHidden ? 'isHidden' : 'button-vitamins'}`"
+                    v-on:click="addLists(vitamin)"><i class="fa fa-circle-plus"></i></button>
                   <button v-if="vitamin_ids.includes(vitamin.id)"
                     :class="`${!isHidden ? 'button-vitamins-remove' : 'button-vitamins'}`"
                     v-on:click="removeList(vitamin); indexList()"> <i class="fa fa-trash"></i></button>
@@ -156,7 +153,6 @@ export default {
     <!-- Vitamins End -->
 
   </div>
-
 </template>
 
 <style>
@@ -176,7 +172,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-top: 2rem;
 }
 
 .search-box:hover .search-txt {
@@ -352,10 +348,28 @@ form .search {
 }
 
 #h5 {
-
   font-size: 25px;
   max-height: 120px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+
+}
+
+h5:hover::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: rgb(0, 85, 255, 0.75);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 85, 255);
 }
 
 .button-vitamins-remove {
@@ -390,17 +404,22 @@ form .search {
   cursor: pointer;
   position: absolute;
   padding: 0.5rem 1rem;
-  background-image: linear-gradient(to right, #00bcd4 50%, #ff4583e7 50%);
+  background: green;
   background-size: 200%;
   color: white;
   font-size: 1.125rem;
   font-weight: bold;
   text-transform: uppercase;
   transition: 0.4s;
-  margin-right: 1rem;
+  margin-right: 3rem;
   margin-bottom: 0.4rem;
   right: 0;
-  bottom: 0
+  bottom: 0;
+  border-radius: 25%;
+}
+
+.button-vitamins i {
+  font-size: 30px;
 }
 
 .button-vitamins .is_hidden {
@@ -463,7 +482,8 @@ h4 {
   border-bottom: solid 2px rgb(184, 181, 181);
   position: absolute;
   bottom: 0;
-  left: 0
+  left: 0;
+  margin-left: 2rem;
 }
 
 

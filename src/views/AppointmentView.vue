@@ -49,7 +49,6 @@ export default {
 </script>
 
 <template>
-
   <div class="appointments-index">
     <h1 class="main-title">APPOINTMENTS</h1>
     <!-- Add appointments Start-->
@@ -140,14 +139,14 @@ export default {
                       </li>
                     </ul>
                   </div>
-                  <div class="col-sm-1 d-flex flex-column justify-content-center align-items-center">
-                    <a v-bind:href="`/appointments/${appointment.id}`" class="btn btn-warning my-1">
+                  <div class="col-sm-1 d-flex flexmd-row flex-lg-column justify-content-center align-items-center">
+                    <a v-bind:href="`/appointments/${appointment.id}`" class="btn btn-warning m-1">
                       <i class="fa fa-eye"></i>
                     </a>
-                    <a v-bind:href="`/Appointments/${appointment.id}/edit`" class="btn btn-primary my-1">
+                    <a v-bind:href="`/Appointments/${appointment.id}/edit`" class="btn btn-primary m-1">
                       <i class="fa fa-pen"></i>
                     </a>
-                    <button class="btn btn-danger my-1" v-on:click="deleteAppointments(appointment)">
+                    <button class="btn btn-danger m-1" v-on:click="deleteAppointments(appointment)">
                       <i class="fa fa-trash"></i>
                     </button>
                   </div>
